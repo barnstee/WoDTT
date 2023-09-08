@@ -1,2 +1,2 @@
 # WoDTT
-Wen of Digital Twin Things
+Web of Digital Twin Things
