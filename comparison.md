@@ -1,5 +1,7 @@
 # This document gives a detailed comparison between DTDL and W3C WoT Thing Description 
 
+## Root / Thing Level
+
 
 | DTDL Term / Concept     | DTDL Description                                                                       | TD Term                   | TD Description                                                                                                 |
 |-------------------------|----------------------------------------------------------------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------|
@@ -12,3 +14,6 @@
 | **"@type": "Property"** | A Property describes the read-only and read/write state of any digital twin.           | **properties**            | All Property-based Interaction Affordances of the Thing.                                                       |
 | **"@type": "Command"**  | A Command describes a function or operation that can be performed on any digital twin. | **actions**               | All Action-based Interaction Affordances of the Thing.                                                         |
 | **"@type": "Telemetry"**| Telemetry describes the data emitted by any digital twin, whether the data is ...      | **events**                | All Event-based Interaction Affordances of the Thing.                                                      |
+
+
+## Property Level
