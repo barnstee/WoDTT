@@ -2,6 +2,8 @@
 
 This document gives a detailed comparison between [DTDL](https://azure.github.io/opendigitaltwins-dtdl/DTDL/v3/DTDL.v3.html) and [W3C WoT Thing Description/Thing Model](https://www.w3.org/TR/wot-thing-description11/).
 
+JSON-LD key terms such as @id, 
+
 ## Root / Thing Level
 
 | DTDL Term / Concept     | DTDL Description                                                                       | TD Term                   | TD Description                                                                                                        |
@@ -11,6 +13,10 @@ This document gives a detailed comparison between [DTDL](https://azure.github.io
 | **description**         | A localizable description for display.                                                 | **description**           | (human-readable) information based on a default language.                                                             |
 |                         |                                                                                        | **descriptions**          | Can be used to support (human-readable) information in different languages.                                           |
 | **comment**             | A comment for model authors.                                                           |                           |                                                                                                                       |
+|                         |                                                                                        | **version**               | Provides version information.                                                                                         |
+|                         |                                                                                        | **modified**              | Provides information when the TD instance was last modified.                                                          |
+|                         |                                                                                        | **support**               | Provides information about the TD maintainer as URI scheme (e.g., mailto [RFC6068], tel [RFC3966], https [RFC9112]).  |
+|                         |                                                                                        | **base**                  | Define the base URI that is used for all relative URI references throughout a TD document.                            |
 | **content**             | A set of elements that define the contents of this Interface.                          |                           | Comment: Kind of interactions specified directly in properties, actions, and events container.                        |
 | **schemas**             | A set of complex schema objects that are reusable within this Interface.               | **schemaDefinitions**     | Set of named data schemas. To be used in a schema name-value pair inside an AdditionalExpectedResponse object.        |
 | **extends**             | A set of DTMIs that refer to Interfaces from which this Interface inherits contents... |                           | A Thing Model can extend an existing Thing Model by using the tm:extends mechanism announced in the links definition. |
