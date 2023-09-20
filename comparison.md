@@ -1,6 +1,6 @@
 # DTDLv3 and W3C WoT Thing Description 1.1 Comparision
 
-This document gives a detailed comparison between DTDL and W3C WoT Thing Description/Thing Model.
+This document gives a detailed comparison between [DTDL](https://azure.github.io/opendigitaltwins-dtdl/DTDL/v3/DTDL.v3.html) and [W3C WoT Thing Description/Thing Model](https://www.w3.org/TR/wot-thing-description11/).
 
 ## Root / Thing Level
 
