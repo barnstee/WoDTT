@@ -2,7 +2,7 @@
 
 This document gives a detailed comparison between [DTDL](https://azure.github.io/opendigitaltwins-dtdl/DTDL/v3/DTDL.v3.html) and [W3C WoT Thing Description/Thing Model](https://www.w3.org/TR/wot-thing-description11/).
 
-JSON-LD key terms such as @id, 
+Hint: JSON-LD keywords like @id, @context, @type etc. are ignored. 
 
 ## Root / Thing Level
 
@@ -16,7 +16,12 @@ JSON-LD key terms such as @id,
 |                         |                                                                                        | **version**               | Provides version information.                                                                                         |
 |                         |                                                                                        | **modified**              | Provides information when the TD instance was last modified.                                                          |
 |                         |                                                                                        | **support**               | Provides information about the TD maintainer as URI scheme (e.g., mailto [RFC6068], tel [RFC3966], https [RFC9112]).  |
-|                         |                                                                                        | **base**                  | Define the base URI that is used for all relative URI references throughout a TD document.                            |
+|                         |                                                                                        | **links**                 | Provides Web links to arbitrary resources that relate to the specified Thing Description.                             |
+|                         |                                                                                        | **forms**                 | Set of form hypermedia controls that describe how an operation can be performed.                                      |
+|                         |                                                                                        | **security**              | Set of security definition names, chosen from those defined in securityDefinitions.                                   |
+|                         |                                                                                        | **securityDefinitions**   | Set of named security configurations (definitions only).                                                              |
+|                         |                                                                                        | **profile**               | Indicates the WoT Profile mechanisms followed by this Thing Description and the corresponding Thing implementation.   |
+|                         |                                                                                        | **uriVariables**          | Define URI template variables according to [RFC6570] as collection based on DataSchema declarations.                  |
 | **content**             | A set of elements that define the contents of this Interface.                          |                           | Comment: Kind of interactions specified directly in properties, actions, and events container.                        |
 | **schemas**             | A set of complex schema objects that are reusable within this Interface.               | **schemaDefinitions**     | Set of named data schemas. To be used in a schema name-value pair inside an AdditionalExpectedResponse object.        |
 | **extends**             | A set of DTMIs that refer to Interfaces from which this Interface inherits contents... |                           | A Thing Model can extend an existing Thing Model by using the tm:extends mechanism announced in the links definition. |
