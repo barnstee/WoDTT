@@ -33,11 +33,25 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 
 ## Property Level
 
+**DTDL definition:**
 
-| DTDL Term / Concept     | DTDL Description                                                                       | TD Term                   | TD Description                                                                                                 |
-|-------------------------|----------------------------------------------------------------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------|
-| **displayName**         | A localizable name for display.                                                        | **title**                 | Provides a human-readable title (e.g., display a text for UI representation) based on a default language.      | 
-| **description**         | A localizable description for display.                                                 | **description**           | (human-readable) information based on a default language.                                                      |
-| **comment**             | A comment for model authors.                                                           |                           |                                                                                                                |
-| **name**                | The programming name of the element.                                                   |                           | Comment: Programming name is assigned as key name of the property                                              |
-| ...               | ...                                                |     ...                      | ...                                          |
+Properties are expected to have backing storage, which means that you can read a property at any time and retrieve its value. If the property is writable, you can also store a value in the property.
+
+**WoT definition:**
+
+An Interaction Affordance that exposes state of the Thing. This state can then be retrieved (read) and/or updated (write). Things can also choose to make Properties observable by pushing the new state after a change.
+
+
+| DTDL Term / Concept    | DTDL Description                                                        | TD Term         | TD Description                                                                                            |
+|------------------------|-------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------------------------------------------------|
+| **displayName**        | A localizable name for display.                                         | **title**       | Provides a human-readable title (e.g., display a text for UI representation) based on a default language. |
+| **description**        | A localizable description for display.                                  | **description** | (human-readable) information based on a default language.                                                 |
+| **comment**            | A comment for model authors.                                            |                 |                                                                                                           |
+| **name**               | The programming name of the element.                                    |                 | Comment: Programming name is assigned as key name of the property                                         |
+| **schema (primitive)** | DTDL terms for primitive types, e.g. integer, double, string...         | **type**        | JSON Schema terms for primitive types                                                                     |
+| **schema (special)**   | Special formats like `datetime` and `duration`                          | **format**      | Hint for validation as specified in JSON Schema, e.g. `date-time`, `email`, `regex`                       |
+| **schema (complex)**   | DTDL structure (`@type: Object`, `fields`)                              | **properties**  | JSON Schema object specification                                                                          |
+| **writable**           | A boolean value that indicates whether the Property is writable or not. |                 |                                                                                                           |
+|                        |                                                                         | **readonly**    | Boolean value that is a hint to indicate whether a property is read only (=true) or not (=false).         |
+|                        |                                                                         | **writeonly**   | Boolean value that is a hint to indicate whether a property is write only (=true) or not (=false).        |
+
