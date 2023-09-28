@@ -49,5 +49,6 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 
 ## Data Schema
 
-| DTDL Term / Concept     | DTDL Description                                                                       | TD Term                   | TD Description																										   | Comments																|
+| DTDL Term / Concept     | DTDL Description                                                                       | TD Term                   | TD Description                                                                                                        | Comments																|
+|-------------------------|----------------------------------------------------------------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
 |          ...               |                      ...                                                                  | ...        | ... |   |
