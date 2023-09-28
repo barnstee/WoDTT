@@ -34,8 +34,20 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 
 | DTDL Term / Concept     | DTDL Description                                                                       | TD Term                   | TD Description																										   | Comments																|
 |-------------------------|----------------------------------------------------------------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------| 
-| **displayName**         | A localizable name for display.                                                        | **title**                 | Provides a human-readable title (e.g., display a text for UI representation) based on a default language.			   | See above.																|
-| **description**         | A localizable description for display.                                                 | **description**           | (human-readable) information based on a default language.															   | See above.																|
-| **comment**             | A comment for model authors.                                                           |                           |																													   | See above.																|
-| **name**                | The programming name of the element.                                                   |                           | Comment: Programming name is assigned as key name of the property													   | See above.																|
-| ...					  | ...																					   | ...                       | ...																												   | ...																	|
+| **displayName**         | A localizable name for display.                                                        | **title**                 | Provides a human-readable title (e.g., display a text for UI representation) based on a default language.	| See above.																|
+| **description**         | A localizable description for display.                                                 | **description**           | (human-readable) information based on a default language.															                    | See above.																|
+| **comment**             | A comment for model authors.                                                           |                           |																													                                                  | See above.																|
+| **name**                | The programming name of the element.                                                   |                           | Comment: Programming name is assigned as key name of the property												                  | See above.																|
+| **schema**              | The data type of the Property, which is an instance of Schema.                         | **type**                  | Assignment of JSON-based data types compatible with JSON Schema                                            |   |
+| **writable**            | A boolean value that indicates whether the Property is writable or not.                | **writeOnly**             | Boolean value that is a hint to indicate whether a property interaction / value is write only (=true) or not (=false). |   |
+|                         |                                                                                        | **readOnly**              | Boolean value that is a hint to indicate whether a property interaction / value is read only (=true) or not (=false). |   |
+|                         |                                                                                        | **observable**            | Boolean value that is a hint to indicate whether a property interaction / value is observable (=true) or not (=false). |   |
+|                         |                                                                                        | **forms**                 | Set of form hypermedia controls that describe how an operation can be performed.  |   |
+|                         |                                                                                        | **uriVariables**          | Define URI template variables according to [RFC6570] as collection based on DataSchema declarations.  |   |
+|                         |                                                                                        | **{DataSchema}**          | Comment: At property level there can be the terms from data schema  |   |
+
+
+## Data Schema
+
+| DTDL Term / Concept     | DTDL Description                                                                       | TD Term                   | TD Description																										   | Comments																|
+|          ...               |                      ...                                                                  | ...        | ... |   |
