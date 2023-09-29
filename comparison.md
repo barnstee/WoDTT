@@ -50,13 +50,15 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 
 | DTDL Term / Concept     | DTDL Description                                                                       | WoT TD Term               | WoT TD Description                                                                                                    | Comments																|
 |-------------------------|----------------------------------------------------------------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
-| **"@type": "Command"**  |Must be "Command"                                                                       | ...					   | ...																												   |																		|
-| **"@id"**               |Identifier for the commnand.  Assigned automatically if non provided.                   | ...					   | ...																						                    	   |																		|
-| **"@id"**               |Must be "Command"                                                                       | ...					   | ...																												   |																		|
-| **"@type": "Command"**  |Must be "Command"                                                                       | ...					   | ...																												   |																		|
-| **"@type": "Command"**  |Must be "Command"                                                                       | ...					   | ...																												   |																		|
-| **"@type": "Command"**  |Must be "Command"                                                                       | ...					   | ...																												   |																		|
-|              
+| **"@type": "Command"**  |If provided, must be "Command"                                                          | ...					   | ...																												   |																		|
+| **@id**                 |Identifier for the commnand.  Assigned automatically if not provided.                   | ...					   | ...																						                    	   |																		|
+| **comment**             |A comment for model authors                                                             | ...					   | ...																												   |																		|
+| **description**         |Comment for model authors                                                               | ...					   | ...																												   |																		|
+| **displayName**         |A localizable name for display.                                                         | ...					   | ...																												   |																		|
+| **name**                |The programming name of the element.                                                    | ...					   | ...																												   |																		|
+| **request**             |A description of the input to the Command.                                              | ...					   | ...																												   |																		|
+| **response**            |	A description of the output of the Command.                                            | ...					   | ...																												   |																		|
+
 
 ## Relationship Level
 
