@@ -50,7 +50,7 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 
 | DTDL Term / Concept     | DTDL Description                                                                       | WoT TD Term               | WoT TD Description                                                                                                    | Comments																|
 |-------------------------|----------------------------------------------------------------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
-| **"@type": "Command"**  |If provided, must be "Command"                                                          | ...					   | ...																												   |																		|
+| **@type**               |If provided, must be "Command"                                                          | ...					   | ...																												   |																		|
 | **@id**                 |Identifier for the commnand.  Assigned automatically if not provided.                   | ...					   | ...																						                    	   |																		|
 | **comment**             |A comment for model authors                                                             | ...					   | ...																												   |																		|
 | **description**         |Comment for model authors                                                               | ...					   | ...																												   |																		|
@@ -58,6 +58,22 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 | **name**                |The programming name of the element.                                                    | ...					   | ...																												   |																		|
 | **request**             |A description of the input to the Command.                                              | ...					   | ...																												   |																		|
 | **response**            |	A description of the output of the Command.                                            | ...					   | ...																												   |																		|
+
+## Relationship Level
+
+| DTDL Term / Concept     | DTDL Description                                                                       | WoT TD Term               | WoT TD Description                                                                                                    | Comments																|
+|-------------------------|----------------------------------------------------------------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| **"@type": "Command"**  |If provided, must be "Relationship"                                                     | ...					   | ...																												   |																		|
+| **@id**                 |Identifier for the Relationship.  Assigned automatically if not provided.               | ...					   | ...																						                    	   |																		|
+| **comment**             |A comment for model authors                                                             | ...					   | ...																												   |																		|
+| **description**         |Comment for model authors                                                               | ...					   | ...																												   |																		|
+| **displayName**         |A localizable name for display.                                                         | ...					   | ...																												   |																		|
+| **maxMultiplicity**     |The max multiplicity for the realtionship target; defaults to the max allowable value   | ...					   | ...																												   |																		|
+| **minMultiplicity**     |The min multiplicity for the realtionship target; defaults to the max allowable value   | ...					   | ...																												   |																		|
+| **name**                |The programming name of the element.                                                    | ...					   | ...																												   |																		|
+| **properties**          |A set of Properties that define Relationship-specific state.                            | ...					   | ...																												   |																		|
+| **target**              |An Interface identifier. If no target is specified, each instance target is permitted to be any Interface.                                            | ...					   | ...																												   |																		|
+| **writable**            |	A boolean value that indicates whether the Relationship is writable or not.                                           | ...					   | ...																												   |																		|
 
 
 ## Relationship Level
