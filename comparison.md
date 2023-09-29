@@ -6,7 +6,7 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 
 ## Root / Thing Level
 
-| DTDL Term / Concept     | DTDL Description                                                                       | WoT TD Term               | WoT TD Description                                                                                                    | Comments																|
+| DTDL Term / Concept     | DTDL Description                                                                        | WoT TD Term               | WoT TD Description                                                                                                    | Comments																|
 |-------------------------|----------------------------------------------------------------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
 | **displayName**         | A localizable name for display.                                                        | **title**                 | Provides a human-readable title (e.g., display a text for UI representation) based on a default language.             | Derived from JSON schema. Proposal is to use the WoT definition.		|
 |                         | Comment: displayName allows JSON-LD language map for multi-language support            | **titles**                | Provides multi-language human-readable titles (e.g., display a text for UI representation in different languages).    | Proposal is to keep WoT definition.									|
@@ -50,7 +50,13 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 
 | DTDL Term / Concept     | DTDL Description                                                                       | WoT TD Term               | WoT TD Description                                                                                                    | Comments																|
 |-------------------------|----------------------------------------------------------------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
-|       ...               |                      ...                                                               | ...					   | ...																												   |																		|
+| **"@type": "Command"**  |Must be "Command"                                                                       | ...					   | ...																												   |																		|
+| **"@id"**               |Identifier for the commnand.  Assigned automatically if non provided.                   | ...					   | ...																						                    	   |																		|
+| **"@id"**               |Must be "Command"                                                                       | ...					   | ...																												   |																		|
+| **"@type": "Command"**  |Must be "Command"                                                                       | ...					   | ...																												   |																		|
+| **"@type": "Command"**  |Must be "Command"                                                                       | ...					   | ...																												   |																		|
+| **"@type": "Command"**  |Must be "Command"                                                                       | ...					   | ...																												   |																		|
+|              
 
 ## Relationship Level
 
