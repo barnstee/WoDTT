@@ -155,12 +155,12 @@ The chart below lists the properties that an Array may have.
 | DTDL Term / Concept     | DTDL Description                                                                       | WoT TD Term               | WoT TD Description                                                                                                    | Comments																|
 |-------------------------|----------------------------------------------------------------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
 | **@type**               | This must be "Map".                         `                           `              | ...					   | ...																												   |																		|
-| **@id** |  An identifer for the Map. If no @id is provided, one will be assigned automatically.                  | ...					   | ...																												   |																		|
-| **comment** |  A comment for model authors.                                                                      | ...					   | ...																												   |																		|
-| **description** |  A localizable description for display.                                                        | ...					   | ...																												   |																		|
-| **displayName** |  A localizable name for display.                                                               | ...					   | ...																												   |																		|
-| **mapKey** | A description of the keys in the Map.                                                               | ...					   | ...																												   |																		|
-| **mapValue** | A description of the values in the Map.                                                           | ...					   | ...																												   |																		|
+| **@id**                 |  An identifer for the Map. If no @id is provided, one will be assigned automatically.  | ...					   | ...																												   |																		|
+| **comment**             |  A comment for model authors.                                                          | ...					   | ...																												   |																		|
+| **description**         |  A localizable description for display.                                                | ...					   | ...																												   |																		|
+| **displayName**         |  A localizable name for display.                                                       | ...					   | ...																												   |																		|
+| **mapKey**              | A description of the keys in the Map.                                                  | ...					   | ...																												   |																		|
+| **mapValue**            | A description of the values in the Map.                                                | ...					   | ...																												   |																		|
 
 
 ### MapKey
