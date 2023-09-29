@@ -154,7 +154,7 @@ The chart below lists the properties that an Array may have.
 
 | DTDL Term / Concept     | DTDL Description                                                                       | WoT TD Term               | WoT TD Description                                                                                                    | Comments																|
 |-------------------------|----------------------------------------------------------------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
-| **@type** | This must be "Map".                                                                                  | ...					   | ...																												   |																		|
+| **@type**               | This must be "Map".                         `                           `              | ...					   | ...																												   |																		|
 | **@id** |  An identifer for the Map. If no @id is provided, one will be assigned automatically.                  | ...					   | ...																												   |																		|
 | **comment** |  A comment for model authors.                                                                      | ...					   | ...																												   |																		|
 | **description** |  A localizable description for display.                                                        | ...					   | ...																												   |																		|
@@ -217,7 +217,7 @@ The chart below lists the properties that a Field may have.
 | **name**                | The programming name of the element.                                                   | ...					   | ...																												   |																		|
 | **schema**              | The data type of the element, which is an instance of Schema.                          | ...					   | ...																												   |																		|
 
-## Geospatial Schemas
+## Geospatial Schemas 
 
 DTDL provides a set of geospatial schemas, based on [GeoJSON](https://geojson.org/), for modeling a variety of geographic data structures.
 
