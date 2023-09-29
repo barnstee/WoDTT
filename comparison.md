@@ -59,7 +59,7 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 | **request**             |A description of the input to the Command.                                              | ...					   | ...																												   |																		|
 | **response**            |	A description of the output of the Command.                                            | ...					   | ...																												   |																		|
 
-## Relationship Level
+## Relationship Level 
 
 | DTDL Term / Concept     | DTDL Description                                                                       | WoT TD Term               | WoT TD Description                                                                                                    | Comments																|
 |-------------------------|----------------------------------------------------------------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
