@@ -6,58 +6,108 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 
 ## Root / Thing Level
 
-| DTDL Term / Concept     | DTDL Description                                                                        | WoT TD Term               | WoT TD Description                                                                                                    | Comments																|
-|-------------------------|----------------------------------------------------------------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
-| **displayName**         | A localizable name for display.                                                        | **title**                 | Provides a human-readable title (e.g., display a text for UI representation) based on a default language.             | Derived from JSON schema. Proposal is to use the WoT definition.		|
-|                         | Comment: displayName allows JSON-LD language map for multi-language support            | **titles**                | Provides multi-language human-readable titles (e.g., display a text for UI representation in different languages).    | Proposal is to keep WoT definition.									|
-| **description**         | A localizable description for display.                                                 | **description**           | (human-readable) information based on a default language.                                                             | Derived from JSON schema. Proposal is to use the WoT definition.		|									
-|                         | Comment: description allows JSON-LD language map for multi-language support            | **descriptions**          | Can be used to support (human-readable) information in different languages.                                           | Proposal is to keep WoT definition.									|									
-| **comment**             | A comment for model authors.                                                           |                           |                                                                                                                       | Proposal is to keep the DTDL definition.								|	
-|                         |                                                                                        | **version**               | Provides version information.                                                                                         | Proposal is to keep WoT definition.									|
-|                         |                                                                                        | **created**               | Provides information when the TD instance was created.                                                                | Proposal is to keep WoT definition.									|
-|                         |                                                                                        | **modified**              | Provides information when the TD instance was last modified.                                                          | Proposal is to keep WoT definition.									|
-|                         |                                                                                        | **support**               | Provides information about the TD maintainer as URI scheme (e.g., mailto [RFC6068], tel [RFC3966], https [RFC9112]).  | Proposal is to keep WoT definition.									|
-| **content**             | A set of elements that define the contents of this Interface.                          |                           | Comment: Kind of interactions specified directly in properties, actions, and events container.                        | Proposal is to split this up into 3 separate fields, i.e. WoT "properties", "actions" and "events" (see below). |
-| **schemas**             | A set of complex schema objects that are reusable within this Interface.               | **schemaDefinitions**     | Set of named data schemas. To be used in a schema name-value pair inside an AdditionalExpectedResponse object.        | Proposal is to keep WoT definition.									|
-| **extends**             | A set of DTMIs that refer to Interfaces from which this Interface inherits contents... | **links**                 | A Thing Model can extend an existing Thing Model by using the tm:extends mechanism announced in the links definition. | WoT uses [RFC8288] web linking for inheritance. Proposal is to use that. |
-|                         |                                                                                        |						   | Links provide Web links to arbitrary resources that relate to the specified Thing Description.                        |																		|
-|                         |                                                                                        | **forms**                 | Set of form hypermedia controls that describe how an operation can be performed.                                      | Used for WoT protocol bindings. Proposal is to use the WoT definition. |
-|                         |                                                                                        | **security**              | Set of security definition names, chosen from those defined in securityDefinitions.                                   | Proposal is to use the WoT definition.									|
-|                         |                                                                                        | **securityDefinitions**   | Set of named security configurations (definitions only).                                                              | Proposal is to use the WoT definition.									|
-|                         |                                                                                        | **profile**               | Indicates mandatory fields defined in the profile. New in version 1.1. Not used yet.								   | Proposal is to use the WoT definition.									|
-|                         |                                                                                        | **uriVariables**          | Define URI template variables according to [RFC6570] as collection based on DataSchema declarations.                  | Proposal is to use the WoT definition.									|
-| **"@type": "Property"** | A Property describes the read-only and read/write state of any digital twin.           | **properties**            | All Property-based Interaction Affordances of the Thing.                                                              | Proposal is to use the WoT definition.									|
-| **"@type": "Command"**  | A Command describes a function or operation that can be performed on any digital twin. | **actions**               | All Action-based Interaction Affordances of the Thing.                                                                | Proposal is to use the WoT definition.									|
-| **"@type": "Telemetry"**| Telemetry describes the data emitted by any digital twin, whether the data is ...      | **events**                | All Event-based Interaction Affordances of the Thing.                                                                 | Proposal is to use the WoT definition.									|
+| DTDL Term / Concept      | DTDL Description                                                                       | WoT TD Term             | WoT TD Description                                                                                                    | Comments                                                                                                        |
+|--------------------------|----------------------------------------------------------------------------------------|-------------------------|-----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| **displayName**          | A localizable name for display.                                                        | **title**               | Provides a human-readable title (e.g., display a text for UI representation) based on a default language.             | Derived from JSON schema. Proposal is to use the WoT definition.                                                |
+|                          | Comment: displayName allows JSON-LD language map for multi-language support            | **titles**              | Provides multi-language human-readable titles (e.g., display a text for UI representation in different languages).    | Proposal is to keep WoT definition.                                                                             |
+| **description**          | A localizable description for display.                                                 | **description**         | (human-readable) information based on a default language.                                                             | Derived from JSON schema. Proposal is to use the WoT definition.                                                |
+|                          | Comment: description allows JSON-LD language map for multi-language support            | **descriptions**        | Can be used to support (human-readable) information in different languages.                                           | Proposal is to keep WoT definition.                                                                             |
+| **comment**              | A comment for model authors.                                                           |                         |                                                                                                                       | Proposal is to keep the DTDL definition.                                                                        |
+|                          |                                                                                        | **version**             | Provides version information.                                                                                         | Proposal is to keep WoT definition.                                                                             |
+|                          |                                                                                        | **created**             | Provides information when the TD instance was created.                                                                | Proposal is to keep WoT definition.                                                                             |
+|                          |                                                                                        | **modified**            | Provides information when the TD instance was last modified.                                                          | Proposal is to keep WoT definition.                                                                             |
+|                          |                                                                                        | **support**             | Provides information about the TD maintainer as URI scheme (e.g., mailto [RFC6068], tel [RFC3966], https [RFC9112]).  | Proposal is to keep WoT definition.                                                                             |
+| **content**              | A set of elements that define the contents of this Interface.                          |                         | Comment: Kind of interactions specified directly in properties, actions, and events container.                        | Proposal is to split this up into 3 separate fields, i.e. WoT "properties", "actions" and "events" (see below). |
+| **schemas**              | A set of complex schema objects that are reusable within this Interface.               | **schemaDefinitions**   | Set of named data schemas. To be used in a schema name-value pair inside an AdditionalExpectedResponse object.        | Proposal is to keep WoT definition.                                                                             |
+| **extends**              | A set of DTMIs that refer to Interfaces from which this Interface inherits contents... | **links**               | A Thing Model can extend an existing Thing Model by using the tm:extends mechanism announced in the links definition. | WoT uses [RFC8288] web linking for inheritance. Proposal is to use that.                                        |
+|                          |                                                                                        |                         | Links provide Web links to arbitrary resources that relate to the specified Thing Description.                        |                                                                                                                 |
+|                          |                                                                                        | **forms**               | Set of form hypermedia controls that describe how an operation can be performed.                                      | Used for WoT protocol bindings. Proposal is to use the WoT definition.                                          |
+|                          |                                                                                        | **security**            | Set of security definition names, chosen from those defined in securityDefinitions.                                   | Proposal is to use the WoT definition.                                                                          |
+|                          |                                                                                        | **securityDefinitions** | Set of named security configurations (definitions only).                                                              | Proposal is to use the WoT definition.                                                                          |
+|                          |                                                                                        | **profile**             | Indicates mandatory fields defined in the profile. New in version 1.1. Not used yet.                                  | Proposal is to use the WoT definition.                                                                          |
+|                          |                                                                                        | **uriVariables**        | Define URI template variables according to [RFC6570] as collection based on DataSchema declarations.                  | Proposal is to use the WoT definition.                                                                          |
+| **"@type": "Property"**  | A Property describes the read-only and read/write state of any digital twin.           | **properties**          | All Property-based Interaction Affordances of the Thing.                                                              | Proposal is to use the WoT definition.                                                                          |
+| **"@type": "Command"**   | A Command describes a function or operation that can be performed on any digital twin. | **actions**             | All Action-based Interaction Affordances of the Thing.                                                                | Proposal is to use the WoT definition.                                                                          |
+| **"@type": "Telemetry"** | Telemetry describes the data emitted by any digital twin, whether the data is ...      | **events**              | All Event-based Interaction Affordances of the Thing.                                                                 | Proposal is to use the WoT definition.                                                                          |
 
 ## Property Level
 
-| DTDL Term / Concept     | DTDL Description                                                                       | WoT TD Term               | WoT TD Description																									   | Comments																|
-|-------------------------|----------------------------------------------------------------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------| 
-| **displayName**         | A localizable name for display.                                                        | **title**                 | Provides a human-readable title (e.g., display a text for UI representation) based on a default language.			   | Derived from JSON schema. Proposal is to use the WoT definition.		|
-| **description**         | A localizable description for display.                                                 | **description**           | (human-readable) information based on a default language.															   | Derived from JSON schema. Proposal is to use the WoT definition.		|
-| **comment**             | A comment for model authors.                                                           |                           |																													   | Proposal is to keep the DTDL definition.								|
-| **name**                | The programming name of the element.                                                   |                           | Comment: Programming name is assigned as key name of the property												       | Proposal is to keep the DTDL definition but convert to JSON-LD 1.1.	|
-| **schema**              | The data type of the Property, which is an instance of Schema.                         | **type**                  | Assignment of JSON-based data types compatible with JSON Schema													   | Proposal is to keep WoT definition.		  							|
-| **writable**            | A boolean value that indicates whether the Property is writable or not.                | **writeOnly**             | Boolean value that is a hint to indicate whether a property interaction / value is write only (=true) or not (=false).| Proposal is to use the WoT definition.									|
-|                         |                                                                                        | **readOnly**              | Boolean value that is a hint to indicate whether a property interaction / value is read only (=true) or not (=false). | Proposal is to use the WoT definition.									|
-|                         |                                                                                        | **observable**            | Boolean value that is a hint to indicate whether a property interaction / value is observable (=true) or not (=false).| Proposal is to use the WoT definition.									|
-|                         |                                                                                        | **forms**                 | Set of form hypermedia controls that describe how an operation can be performed (used for protocol bindings).		   | Proposal is to use the WoT definition.									|
-|                         |                                                                                        | **uriVariables**          | Define URI template variables according to [RFC6570] as collection based on DataSchema declarations.				   | Proposal is to use the WoT definition.									|
-|                         |                                                                                        | **{DataSchema}**          | Comment: At property level there can be the terms from data schema													   | Proposal is to use the WoT definition.									|
+| DTDL Term / Concept | DTDL Description                                                        | WoT TD Term      | WoT TD Description                                                                                                     | Comments                                                            |
+|---------------------|-------------------------------------------------------------------------|------------------|------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| **displayName**     | A localizable name for display.                                         | **title**        | Provides a human-readable title (e.g., display a text for UI representation) based on a default language.              | Derived from JSON schema. Proposal is to use the WoT definition.    |
+| **description**     | A localizable description for display.                                  | **description**  | (human-readable) information based on a default language.                                                              | Derived from JSON schema. Proposal is to use the WoT definition.    |
+| **comment**         | A comment for model authors.                                            |                  |                                                                                                                        | Proposal is to keep the DTDL definition.                            |
+| **name**            | The programming name of the element.                                    |                  | Comment: Programming name is assigned as key name of the property                                                      | Proposal is to keep the DTDL definition but convert to JSON-LD 1.1. |
+| **schema**          | The data type of the Property, which is an instance of Schema.          | **type**         | Assignment of JSON-based data types compatible with JSON Schema                                                        | Proposal is to keep WoT definition.                                 |
+| **writable**        | A boolean value that indicates whether the Property is writable or not. | **writeOnly**    | Boolean value that is a hint to indicate whether a property interaction / value is write only (=true) or not (=false). | Proposal is to use the WoT definition.                              |
+|                     |                                                                         | **readOnly**     | Boolean value that is a hint to indicate whether a property interaction / value is read only (=true) or not (=false).  | Proposal is to use the WoT definition.                              |
+|                     |                                                                         | **observable**   | Boolean value that is a hint to indicate whether a property interaction / value is observable (=true) or not (=false). | Proposal is to use the WoT definition.                              |
+|                     |                                                                         | **forms**        | Set of form hypermedia controls that describe how an operation can be performed (used for protocol bindings).          | Proposal is to use the WoT definition.                              |
+|                     |                                                                         | **uriVariables** | Define URI template variables according to [RFC6570] as collection based on DataSchema declarations.                   | Proposal is to use the WoT definition.                              |
+|                     |                                                                         | **{DataSchema}** | Comment: At property level there can be the terms from data schema                                                     | Proposal is to use the WoT definition.                              |
 
 ## Commands Level
 
-| DTDL Term / Concept     | DTDL Description                                                                       | WoT TD Term               | WoT TD Description                                                                                                    | Comments																|
-|-------------------------|----------------------------------------------------------------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
-| **@type**               |If provided, must be "Command"                                                          | ...					   | ...																												   |																		|
-| **@id**                 |Identifier for the commnand.  Assigned automatically if not provided.                   | ...					   | ...																						                    	   |																		|
-| **comment**             |A comment for model authors                                                             | ...					   | ...																												   |																		|
-| **description**         |Comment for model authors                                                               | ...					   | ...																												   |																		|
-| **displayName**         |A localizable name for display.                                                         | ...					   | ...																												   |																		|
-| **name**                |The programming name of the element.                                                    | ...					   | ...																												   |																		|
-| **request**             |A description of the input to the Command.                                              | ...					   | ...																												   |																		|
-| **response**            |	A description of the output of the Command.                                            | ...					   | ...																												   |																		|
+| DTDL Term / Concept | DTDL Description                                                      | WoT TD Term | WoT TD Description        | Comments                                                   |
+|---------------------|-----------------------------------------------------------------------|-------------|---------------------------|------------------------------------------------------------|
+| **@type**           | If provided, must be "Command"                                        | **action**  |                           | Proposal: Use JSON-LD 1.1 style for better JSON processing |
+| **@id**             | Identifier for the commnand.  Assigned automatically if not provided. |             | Same concept from JSON-LD |                                                            |
+| **comment**         | A comment for model authors                                           |             |                           |                                                            |
+| **description**     | Comment for model authors                                             | ...         | ...                       |                                                            |
+| **displayName**     | A localizable name for display.                                       | ...         | ...                       |                                                            |
+| **name**            | The programming name of the element.                                  | ...         | ...                       |                                                            |
+| **request**         | A description of the input to the Command.                            | ...         | ...                       |                                                            |
+| **response**        | A description of the output of the Command.                           | ...         | ...                       |                                                            |
+
+### Examples
+
+
+DTDL v3
+```json
+{
+  "@type": "Command",
+  "name": "reboot",
+  "comment": "Reboot the system",
+  "description": "Reboots the system at the specified time",
+  "displayName": "SystemReboot",
+  "request": {
+    "name": "rebootTime",
+    "displayName": "Reboot Time",
+    "description": "Requested time to reboot the device.",
+    "schema": "dateTime"
+  },
+  "response": {
+    "name": "scheduledTime",
+    "displayName": "Scheduled Time",
+    "description": "Scheduled shutdown time",
+    "schema": "dateTime"
+  }
+}
+```
+
+
+Thing Model 1.1
+```json
+"actions": {
+  "reboot": {
+    "title": "SystemReboot",
+    "description": "Reboots the system at the specified time",
+    "input": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Reboot Time",
+      "description": "Requested time to reboot the device."
+    },
+    "output": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Scheduled Time",
+      "description": "Scheduled shutdown time"
+    }
+  }
+}
+```
+
 
 ## Relationship Level 
 
