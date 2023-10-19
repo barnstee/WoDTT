@@ -4,6 +4,418 @@ This document gives a detailed comparison between [DTDL](https://azure.github.io
 
 Hint: JSON-LD keywords like @id, @context, @type etc. are ignored. 
 
+## Example Of Conversion
+
+
+### *Digital Twin Description Language v3*
+```json
+{
+  "@context": "dtmi:dtdl:context;3",
+  "@id": "dtmi:test:model;1",
+  "@type": "Interface",
+  "displayName": "Test Model",
+  "description": "Thing Model Test",
+  "comment": "http://localhost:3000",
+  "contents": [
+    {
+      "@type": "Property",
+      "writable": false,
+      "schema": {
+        "displayName": "availablePower",
+        "fields": [
+          {
+            "@type": "Field",
+            "name": "status",
+            "schema": "boolean"
+          }
+        ],
+        "@type": "Object"
+      },
+      "name": "power",
+      "displayName": "availablePower",
+      "description": "Property obtained from 'Test Model' Thing Model",
+      "comment": "1 form: 1 - href: power"
+    },
+    {
+      "@type": "Property",
+      "writable": false,
+      "schema": "string",
+      "name": "content",
+      "displayName": "availableContent",
+      "description": "Content of the Test Model",
+      "comment": "1 form: 1 - href: content"
+    },
+    {
+      "@type": "Property",
+      "writable": false,
+      "schema": "integer",
+      "name": "temperature",
+      "displayName": "availableTemperature",
+      "description": "Property obtained from 'Test Model' Thing Model",
+      "comment": "1 form: 1 - href: temp"
+    },
+    {
+      "@type": "Property",
+      "writable": false,
+      "schema": {
+        "valueSchema": "string",
+        "description": "Current car status (readyToCharge, charging, stopCharging)",
+        "enumValues": [
+          {
+            "@type": "EnumValue",
+            "displayName": "readyToCharge",
+            "name": "readyToCharge",
+            "enumValue": "readyToCharge"
+          },
+          {
+            "@type": "EnumValue",
+            "displayName": "charging",
+            "name": "charging",
+            "enumValue": "charging"
+          },
+          {
+            "@type": "EnumValue",
+            "displayName": "stopCharging",
+            "name": "stopCharging",
+            "enumValue": "stopCharging"
+          }
+        ],
+        "@type": "Enum"
+      },
+      "name": "status",
+      "displayName": "status",
+      "description": "Current car status (readyToCharge, charging, stopCharging)",
+      "comment": "1 form: 1 - href: /ecar/properties/status"
+    },
+    {
+      "@type": "Property",
+      "writable": false,
+      "schema": {
+        "elementSchema": "double",
+        "displayName": "RGB color value",
+        "@type": "Array"
+      },
+      "name": "rgb",
+      "displayName": "RGB color value",
+      "description": "Property obtained from 'Test Model' Thing Model"
+    },
+    {
+      "@type": "Command",
+      "name": "toggle",
+      "displayName": "togglePowerStatus",
+      "description": "Command obtained from 'Test Model' Thing Model",
+      "comment": "1 form: 1 - href: toggle"
+    },
+    {
+      "@type": "Command",
+      "name": "setVolume",
+      "displayName": "setVolume",
+      "description": "Command obtained from 'Test Model' Thing Model",
+      "comment": "1 form: 1 - href: setvolume"
+    },
+    {
+      "@type": "Command",
+      "Request": {
+        "@type": "CommandRequest",
+        "name": "rebootRequest",
+        "displayName": "Reboot Time",
+        "description": "Requested time to reboot the device.",
+        "schema": "dateTime"
+      },
+      "Response": {
+        "@type": "CommandResponse",
+        "name": "rebootResponse",
+        "displayName": "Scheduled Time",
+        "description": "Scheduled shutdown time",
+        "schema": "dateTime"
+      },
+      "name": "reboot",
+      "displayName": "SystemReboot",
+      "description": "Reboots the system at the specified time"
+    },
+    {
+      "@type": "Command",
+      "Request": {
+        "@type": "CommandRequest",
+        "name": "playVideoRequest",
+        "displayName": "playVideo Request",
+        "description": "playVideo action request",
+        "schema": {
+          "displayName": "playVideoRequest",
+          "description": "playVideo action request",
+          "fields": [
+            {
+              "@type": "Field",
+              "displayName": "VideoIdentifier",
+              "name": "identifier",
+              "description": "The unique identifier of a Video",
+              "schema": "string"
+            },
+            {
+              "@type": "Field",
+              "displayName": "VideoName",
+              "name": "name",
+              "description": "The name of a Video file",
+              "schema": "string"
+            },
+            {
+              "@type": "Field",
+              "displayName": "Timestamp",
+              "name": "timestamp",
+              "description": "Request Timestamp",
+              "schema": "dateTime"
+            },
+            {
+              "@type": "Field",
+              "displayName": "VideoUrl",
+              "name": "url",
+              "description": "The Video Url",
+              "schema": "string"
+            }
+          ],
+          "@type": "Object"
+        }
+      },
+      "Response": {
+        "@type": "CommandResponse",
+        "name": "playVideoResponse",
+        "displayName": "playVideo Response",
+        "schema": {
+          "fields": [
+            {
+              "@type": "Field",
+              "name": "stream",
+              "schema": "string"
+            },
+            {
+              "@type": "Field",
+              "name": "timestamp",
+              "schema": "dateTime"
+            }
+          ],
+          "@type": "Object"
+        }
+      },
+      "name": "playVideo",
+      "displayName": "playVideo",
+      "description": "Command obtained from 'Test Model' Thing Model",
+      "comment": "1 form: 1 - href: playvideo"
+    },
+    {
+      "type": "Telemetry",
+      "name": "alert",
+      "displayName": "alert",
+      "description": "Telemetry obtained from 'Test Model' Thing Model",
+      "comment": "2 forms: 1 - href: alrt / 2 - href: ws://localhost:8888/alert / "
+    }
+  ]
+}
+
+```
+
+### *Thing Model 1.1*               
+
+```json    
+{
+  "@context": "https://www.w3.org/2019/wot/td/v1",
+  "id": "urn:testModel",
+  "@type": "tm:ThingModel",
+  "description" : "Thing Model Test",
+  "securityDefinitions": {
+    "nosec_sc": {
+      "scheme": "nosec"
+    }
+  },
+  "security": "nosec_sc",
+  "base": "http://localhost:3000",
+  "title": "Test Model",
+  "properties": {
+    "power": {
+      "title": "availablePower",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean"
+        }
+      },
+      "forms": [
+        {
+          "op": "readproperty",
+          "contentType": "application/json;charset=utf-8",
+          "href": "power"
+        }
+      ]
+    },
+    "content": {
+      "title": "availableContent",
+      "description": "Content of the Test Model",
+      "type": "string",
+      "forms": [
+        {
+          "op": "readproperty",
+          "contentType": "application/json;charset=utf-8",
+          "href": "content"
+        }
+      ]
+    },
+    "temperature": {
+      "title": "availableTemperature",
+      "type": "integer",
+      "forms": [
+        {
+          "op": "readproperty",
+          "contentType": "application/json;charset=utf-8",
+          "href": "temp"
+        }
+      ]
+    },
+    "status": {
+      "type": "string",
+      "description": "Current car status (readyToCharge, charging, stopCharging)",
+      "readOnly": true,
+      "enum": [
+        "readyToCharge",
+        "charging",
+        "stopCharging"
+      ],
+      "forms": [
+        {
+          "href": "/ecar/properties/status",
+          "contentType": "application/json",
+          "op": [ "readproperty" ]
+        }
+      ]
+    },
+    "rgb": {
+      "title": "RGB color value",
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 255
+      },
+      "minItems": 3,
+      "maxItems": 3
+    }
+  },
+  "actions": {
+    "toggle": {
+      "safe": true,
+      "idempotent": false,
+      "title": "togglePowerStatus",
+      "forms": [
+        {
+          "op": "invokeaction",
+          "contentType": "application/json;charset=utf-8",
+          "href": "toggle"
+        }
+      ]
+    },
+    "setVolume": {
+      "safe": true,
+      "idempotent": false,
+      "title": "setVolume",
+      "forms": [
+        {
+          "op": "invokeaction",
+          "contentType": "application/json;charset=utf-8",
+          "href": "setvolume"
+        }
+      ]
+    },
+    "reboot": {
+      "title": "SystemReboot",
+      "description": "Reboots the system at the specified time",
+      "input": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Reboot Time",
+        "description": "Requested time to reboot the device."
+      },
+      "output": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Scheduled Time",
+        "description": "Scheduled shutdown time"
+      }
+    },
+    "playVideo": {
+      "safe": true,
+      "idempotent": false,
+      "title": "playVideo",
+      "forms": [
+        {
+          "op": "invokeaction",
+          "contentType": "application/json;charset=utf-8",
+          "href": "playvideo"
+        }
+      ],
+      "input": {
+        "type": "object",
+        "description": "playVideo action request",
+        "title": "playVideo Request",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "title": "Video Identifier",
+            "description": "The unique identifier of a Video"
+          },
+          "name": {
+            "type": "string",
+            "title": "Video Name",
+            "description": "The name of a Video file"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp",
+            "description": "Request Timestamp"
+          },
+          "url": {
+            "type": "string",
+            "title": "Video Url",
+            "description": "The Video Url"
+          }
+        }
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "stream": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  },
+  "events": {
+    "alert": {
+      "title": "alert",
+      "data": { "type": "object" },
+      "forms": [
+        {
+          "op": "subscribeevent",
+          "contentType": "application/json;charset=utf-8",
+          "subprotocol": "longpoll",
+          "href": "alrt"
+        },
+        {
+          "op": "subscribeevent",
+          "contentType": "application/json;charset=utf-8",
+          "href": "ws://localhost:8888/alert"
+        }
+      ]
+    }
+  }
+}
+
+
+```                                          
+
 ## Root / Thing Level
 
 | DTDL Term / Concept      | DTDL Description                                                                       | WoT TD Term             | WoT TD Description                                                                                                    | Comments                                                                                                        |
@@ -30,6 +442,47 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 | **"@type": "Command"**   | A Command describes a function or operation that can be performed on any digital twin. | **actions**             | All Action-based Interaction Affordances of the Thing.                                                                | Proposal is to use the WoT definition.                                                                          |
 | **"@type": "Telemetry"** | Telemetry describes the data emitted by any digital twin, whether the data is ...      | **events**              | All Event-based Interaction Affordances of the Thing.                                                                 | Proposal is to use the WoT definition.                                                                          |
 
+### Examples
+
+#### *DTDL v3* 
+```json
+{
+  "@context": "dtmi:dtdl:context;3",
+  "@id": "dtmi:test:model;1",
+  "@type": "Interface",
+  "displayName": "Test Model",
+  "description": "Thing Model Test",
+  "comment": "http://localhost:3000",
+  "contents": ...
+
+...
+
+}
+```
+
+#### *Thing Model 1.1* 
+```json
+
+{
+  "@context": "https://www.w3.org/2019/wot/td/v1",
+  "id": "urn:testModel",
+  "@type": "tm:ThingModel",
+  "description" : "Thing Model Test",
+  "securityDefinitions": {
+    "nosec_sc": {
+      "scheme": "nosec"
+    }
+  },
+  "security": "nosec_sc",
+  "base": "http://localhost:3000",
+  "title": "Test Model",
+  "properties": ...
+
+...
+
+}
+```
+
 ## Property Level
 
 | DTDL Term / Concept | DTDL Description                                                        | WoT TD Term      | WoT TD Description                                                                                                     | Comments                                                            |
@@ -45,6 +498,45 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 |                     |                                                                         | **forms**        | Set of form hypermedia controls that describe how an operation can be performed (used for protocol bindings).          | Proposal is to use the WoT definition.                              |
 |                     |                                                                         | **uriVariables** | Define URI template variables according to [RFC6570] as collection based on DataSchema declarations.                   | Proposal is to use the WoT definition.                              |
 |                     |                                                                         | **{DataSchema}** | Comment: At property level there can be the terms from data schema                                                     | Proposal is to use the WoT definition.                              |
+
+### Examples
+
+#### *DTDL v3* 
+
+```json
+...
+
+{
+  "@type": "Property",
+  "writable": false,
+  "schema": "string",
+  "name": "content",
+  "displayName": "availableContent",
+  "description": "Content of the Test Model",
+  "comment": "1 form: 1- Thing Model form href: content"
+},
+
+...
+```
+#### *Thing Model 1.1* 
+```json
+"properties" :{
+  "content": {
+    "title": "availableContent",
+    "type": "string",
+    "description": "Content of the Test Model",
+    "forms": [
+      {
+        "op": "readproperty",
+        "contentType": "application/json;charset=utf-8",
+        "href": "content"
+      }
+    ]
+  }
+}
+
+```
+
 
 ## Commands Level
 
@@ -62,49 +554,50 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 ### Examples
 
 
-DTDL v3
+*DTDL v3*
 ```json
 {
   "@type": "Command",
-  "name": "reboot",
-  "comment": "Reboot the system",
-  "description": "Reboots the system at the specified time",
-  "displayName": "SystemReboot",
-  "request": {
-    "name": "rebootTime",
+  "Request": {
+    "@type": "CommandRequest",
+    "name": "rebootRequest",
     "displayName": "Reboot Time",
     "description": "Requested time to reboot the device.",
     "schema": "dateTime"
   },
-  "response": {
-    "name": "scheduledTime",
+  "Response": {
+    "@type": "CommandResponse",
+    "name": "rebootResponse",
     "displayName": "Scheduled Time",
     "description": "Scheduled shutdown time",
     "schema": "dateTime"
-  }
+  },
+  "name": "reboot",
+  "displayName": "SystemReboot",
+  "description": "Reboots the system at the specified time"
 }
 ```
 
-
-Thing Model 1.1
+*Thing Model 1.1*
 ```json
-"actions": {
-  "reboot": {
-    "title": "SystemReboot",
-    "description": "Reboots the system at the specified time",
-    "input": {
-      "type": "string",
-      "format": "date-time",
-      "title": "Reboot Time",
-      "description": "Requested time to reboot the device."
-    },
-    "output": {
-      "type": "string",
-      "format": "date-time",
-      "title": "Scheduled Time",
-      "description": "Scheduled shutdown time"
-    }
-  }
+
+"actions":{
+ "reboot": {
+   "title": "SystemReboot",
+   "description": "Reboots the system at the specified time",
+   "input": {
+     "type": "string",
+     "format": "date-time",
+     "title": "Reboot Time",
+     "description": "Requested time to reboot the device."
+   },
+   "output": {
+     "type": "string",
+     "format": "date-time",
+     "title": "Scheduled Time",
+     "description": "Scheduled shutdown time"
+   }
+ }
 }
 ```
 
@@ -170,7 +663,41 @@ The chart below lists the properties that an Array may have.
 | **description**         | A localizable description for display.                                                 | ...					   | ...																												   |																		|
 | **displayName**         | A localizable name for display.                                                        | ...					   | ...																												   |																		|
 | **elementSchema**       | The data type of each element in the Array, which is an instance of Schema.            | ...					   | ...																												   |																		|
+### Examples
 
+#### *DTDL v3* 
+  
+```json
+...
+
+"schema": {
+  "elementSchema": "double",
+  "displayName": "RGB color value",
+  "@type": "Array"
+}
+
+...
+```
+#### *Thing Model 1.1* 
+
+```json
+...
+
+{ 
+ "title": "RGB color value",
+ "type": "array",
+ "items": {
+   "type": "number",
+   "minimum": 0,
+   "maximum": 255
+ },
+ "minItems": 3,
+ "maxItems": 3
+}
+
+...
+
+```
 
 ## Enum
 
@@ -197,6 +724,60 @@ The chart below lists the properties that an Array may have.
 | **displayName**         | A localizable name for display.                                                        | ...					   | ...																												   |																		|
 | **enumValue**           | The on-the-wire value that maps to the EnumValue, which may be either an integer or a string. | ...					   | ...																												   |																		|
 | **name**                | The programming name of the element.                                                   | ...					   | ...																												   |																		|
+
+### Examples
+
+#### *DTDL v3* 
+  
+```json
+...
+"schema": {
+  "valueSchema": "string",
+  "description": "Current car status (readyToCharge, charging, stopCharging)",
+  "enumValues": [
+    {
+      "@type": "EnumValue",
+      "displayName": "readyToCharge",
+      "name": "readyToCharge",
+      "enumValue": "readyToCharge"
+    },
+    {
+      "@type": "EnumValue",
+      "displayName": "charging",
+      "name": "charging",
+      "enumValue": "charging"
+    },
+    {
+      "@type": "EnumValue",
+      "displayName": "stopCharging",
+      "name": "stopCharging",
+      "enumValue": "stopCharging"
+    }
+  ],
+  "@type": "Enum"
+}
+...
+```
+#### *Thing Model 1.1* 
+
+```json
+...
+
+ "status": {
+   "type": "string",
+   "description": "Current car status (readyToCharge, charging, stopCharging)",
+   "readOnly": true,
+   "enum": [
+     "readyToCharge",
+     "charging",
+     "stopCharging"
+   ],
+   "forms": [...]
+ }
+
+...
+
+```
 
 ## Map
 
@@ -266,6 +847,89 @@ The chart below lists the properties that a Field may have.
 | **displayName**         | A localizable name for display.                                                        | ...					   | ...																												   |																		|
 | **name**                | The programming name of the element.                                                   | ...					   | ...																												   |																		|
 | **schema**              | The data type of the element, which is an instance of Schema.                          | ...					   | ...																												   |																		|
+
+### Examples
+
+#### *DTDL v3* 
+  
+```json
+...
+
+"schema": {
+  "displayName": "playVideoRequest",
+  "description": "playVideo action request",
+  "fields": [
+    {
+      "@type": "Field",
+      "displayName": "VideoIdentifier",
+      "name": "identifier",
+      "description": "The unique identifier of a Video",
+      "schema": "string"
+    },
+    {
+      "@type": "Field",
+      "displayName": "VideoName",
+      "name": "name",
+      "description": "The name of a Video file",
+      "schema": "string"
+    },
+    {
+      "@type": "Field",
+      "displayName": "Timestamp",
+      "name": "timestamp",
+      "description": "Request Timestamp",
+      "schema": "dateTime"
+    },
+    {
+      "@type": "Field",
+      "displayName": "VideoUrl",
+      "name": "url",
+      "description": "The Video Url",
+      "schema": "string"
+    }
+  ],
+  "@type": "Object"
+}
+
+...
+```
+#### *Thing Model 1.1* 
+```json
+{
+...
+
+ "type": "object",
+ "description": "playVideo action request",
+ "title": "playVideo Request",
+ "properties": {
+   "identifier": {
+     "type": "string",
+     "title": "Video Identifier",
+     "description": "The unique identifier of a Video"
+   },
+   "name": {
+     "type": "string",
+     "title": "Video Name",
+     "description": "The name of a Video file"
+   },
+   "timestamp": {
+     "type": "string",
+     "format": "date-time",
+     "title": "Timestamp",
+     "description": "Request Timestamp"
+   },
+   "url": {
+     "type": "string",
+     "title": "Video Url",
+     "description": "The Video Url"
+   }
+ 
+...
+
+}
+
+
+```
 
 ## Geospatial Schemas 
 
