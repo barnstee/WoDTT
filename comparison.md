@@ -477,7 +477,7 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
   "displayName": "Test Model",
   "description": "Thing Model Test",
   "comment": "http://localhost:3000",
-  "contents": ...
+  "contents": []
 
 ...
 
@@ -501,9 +501,7 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
   "security": "nosec_sc",
   "base": "http://localhost:3000",
   "title": "Test Model",
-  "properties": ...
-
-...
+  "properties": []
 
 }
 ```
@@ -539,7 +537,6 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 #### _DTDL v3_
 
 ```json
-...
 
 {
   "@type": "Property",
@@ -551,7 +548,6 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
   "comment": "1 form: 1- Thing Model form href: content"
 },
 
-...
 ```
 
 #### _Thing Model 1.1_
@@ -674,7 +670,6 @@ The chart below lists the properties that an Array may have.
 #### _DTDL v3_
 
 ```json
-...
 
 "schema": {
   "elementSchema": "double",
@@ -682,14 +677,11 @@ The chart below lists the properties that an Array may have.
   "@type": "Array"
 }
 
-...
 ```
 
 #### _Thing Model 1.1_
 
 ```json
-...
-
 {
  "title": "RGB color value",
  "type": "array",
@@ -701,8 +693,6 @@ The chart below lists the properties that an Array may have.
  "minItems": 3,
  "maxItems": 3
 }
-
-...
 
 ```
 
@@ -735,7 +725,6 @@ The chart below lists the properties that an Array may have.
 #### _DTDL v3_
 
 ```json
-...
 "schema": {
   "valueSchema": "string",
   "description": "Current car status (readyToCharge, charging, stopCharging)",
@@ -761,13 +750,12 @@ The chart below lists the properties that an Array may have.
   ],
   "@type": "Enum"
 }
-...
 ```
 
 #### _Thing Model 1.1_
 
 ```json
-...
+
 
  "status": {
    "type": "string",
@@ -777,10 +765,9 @@ The chart below lists the properties that an Array may have.
      "charging",
      "stopCharging"
    ],
-   "forms": [...]
+   "forms": []
  }
 
-...
 
 ```
 
@@ -816,7 +803,6 @@ The chart below lists the properties that a Field may have.
 #### _DTDL v3_
 
 ```json
-...
 
 "schema": {
   "displayName": "playVideoRequest",
@@ -854,15 +840,12 @@ The chart below lists the properties that a Field may have.
   "@type": "Object"
 }
 
-...
 ```
 
 #### _Thing Model 1.1_
 
 ```json
 {
-...
-
  "type": "object",
  "description": "playVideo action request",
  "title": "playVideo Request",
@@ -888,9 +871,6 @@ The chart below lists the properties that a Field may have.
      "title": "Video Url",
      "description": "The Video Url"
    }
-
-...
-
 }
 
 
