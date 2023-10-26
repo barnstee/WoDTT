@@ -478,9 +478,6 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
   "description": "Thing Model Test",
   "comment": "http://localhost:3000",
   "contents": []
-
-...
-
 }
 ```
 
