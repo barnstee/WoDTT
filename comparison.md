@@ -842,6 +842,7 @@ The chart below lists the properties that a Field may have.
 #### _Thing Model 1.1_
 
 ```json
+
 {
  "type": "object",
  "description": "playVideo action request",
@@ -870,13 +871,49 @@ The chart below lists the properties that a Field may have.
    }
 }
 
+```
+
+## Geospatial Schemas
+
+DTDL provides a set of geospatial schemas, based on [GeoJSON](https://geojson.org/), for modeling a variety of geographic data structures.
+
+| DTDL Term / Concept | DTDL Description                                                            | WoT TD Term | WoT TD Description | Comments |
+| ------------------- | --------------------------------------------------------------------------- | ----------- | ------------------ | -------- |
+| **lineString**      | GeoJSON LineString - dtmi:standard:schema:geospatial:lineString;3           | ...         | ...                | Proposal is to use the Geojson RFC |
+| **multiLineString** | GeoJSON MultiLineString - dtmi:standard:schema:geospatial:multiLineString;3 | ...         | ...                |          |
+| **multiPoint**      | GeoJSON MultiPoint - dtmi:standard:schema:geospatial:multiPoint;3           | ...         | ...                |          |
+| **multiPolygon**    | GeoJSON MultiPolygon - dtmi:standard:schema:geospatial:multiPolygon;3       | ...         | ...                |          |
+| **point**           | GeoJSON Point - dtmi:standard:schema:geospatial:point;3                     | ...         | ...                |          |
+| **polygon**         | GeoJSON Polygon - dtmi:standard:schema:geospatial:polygon;3                 | ...         | ...                |          |
+
+### Examples
+
+#### _DTDL v3_
+
+This example shows modeling the location of a device as Telemetry using the geospatial schema `point`.
+
+```json
+
+{
+  "@type": "Telemetry",
+  "name": "location",
+  "schema": "point"
+}
 
 ```
 
-</br>
-</br>
-</br>
-</br>
+A Telemetry message sent by a particular device reporting its location would have the following structure in JSON (and equivalent structure in other serializations).
+
+```json
+
+{
+  "location": {
+    "type": "Point",
+    "coordinates": [ 47.643742, -122.128014 ]
+  }
+}
+
+```
 
 # Unsolved Mappings
 
@@ -943,17 +980,3 @@ The chart below lists the properties that a Field may have.
 | **displayName**     | A localizable name for display.                                                | ...         | ...                |          |
 | **name**            | The programming name of the element.                                           | ...         | ...                |          |
 | **schema**          | The data type of the Component, which is an instance of Interface.             | ...         | ...                |          |
-
-
-## Geospatial Schemas
-
-DTDL provides a set of geospatial schemas, based on [GeoJSON](https://geojson.org/), for modeling a variety of geographic data structures.
-
-| DTDL Term / Concept | DTDL Description                                                            | WoT TD Term | WoT TD Description | Comments |
-| ------------------- | --------------------------------------------------------------------------- | ----------- | ------------------ | -------- |
-| **lineString**      | GeoJSON LineString - dtmi:standard:schema:geospatial:lineString;3           | ...         | ...                |          |
-| **multiLineString** | GeoJSON MultiLineString - dtmi:standard:schema:geospatial:multiLineString;3 | ...         | ...                |          |
-| **multiPoint**      | GeoJSON MultiPoint - dtmi:standard:schema:geospatial:multiPoint;3           | ...         | ...                |          |
-| **multiPolygon**    | GeoJSON MultiPolygon - dtmi:standard:schema:geospatial:multiPolygon;3       | ...         | ...                |          |
-| **point**           | GeoJSON Point - dtmi:standard:schema:geospatial:point;3                     | ...         | ...                |          |
-| **polygon**         | GeoJSON Polygon - dtmi:standard:schema:geospatial:polygon;3                 | ...         | ...                |          |
