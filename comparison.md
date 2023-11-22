@@ -957,7 +957,7 @@ A Telemetry message sent by a particular device reporting its location would hav
 
 | DTDL Term / Concept | DTDL Description                                                                                           | WoT Term                 | WoT Description                                          | Comments                      |
 |---------------------|------------------------------------------------------------------------------------------------------------|--------------------------|----------------------------------------------------------|-------------------------------|
-| **@type**           | If provided, must be "Relationship"                                                                        | ***"@type":"hctl:link"** |                                                          | Implicit, can add dtmi type   |
+| **@type**           | If provided, must be "Relationship"                                                                        | ***"@type":"hctl:link"** |                                                          | Implicit, can add dtdl type   |
 | **@id**             | Identifier for the Relationship. Assigned automatically if not provided.                                   | **"@id"**                |                                                          |                               |
 | **comment**         | A comment for model authors                                                                                | -                        |                                                          |                               |
 | **description**     | Comment for model authors                                                                                  | -                        |                                                          | "td:description"              |
@@ -970,6 +970,8 @@ A Telemetry message sent by a particular device reporting its location would hav
 | **writable**        | A boolean value that indicates whether the Relationship is writable or not.                                | -                        |                                                          | What does writable mean here? |
 
 From `Ontologies/ISA95/CommonObjectModels/Part2/OperationsSchedule/OperationsSchedule.json`
+
+DTDL:
 ```json
         {
             "@type": "Relationship",
@@ -980,9 +982,11 @@ From `Ontologies/ISA95/CommonObjectModels/Part2/OperationsSchedule/OperationsSch
         },
 ```
 
+
+TM:
 ```json
         {
-            "@type": "dtmi:Relationship",
+            "@type": "dtdl:Relationship",
             "rel": "isMadeUpOf",
             "title": "Is made up of",
             "description": "The operations requests that make up the operations schedule.",
@@ -995,10 +999,33 @@ From `Ontologies/ISA95/CommonObjectModels/Part2/OperationsSchedule/OperationsSch
 
 | DTDL Term / Concept | DTDL Description                                                               | WoT TD Term       | WoT TD Description         | Comments |
 |---------------------|--------------------------------------------------------------------------------|-------------------|----------------------------|----------|
-| **@type**           | This must be "Component".                                                      | **@type**         | This must be "tm:submodel" |          |
+| **@type**           | This must be "Component".                                                      | **rel**           | This must be "tm:submodel" |          |
 | **@id**             | An identifer for the Component. If no @id is provided, assigned automatically. | **@id**           | Same as DTDL               |          |
-| **comment**         | A comment for model authors.                                                   | -                 |                            |          |
+| **comment**         | A comment for model authors.                                                   | -                 |                            | "         |
 | **description**     | A localizable description for display.                                         | -                 |                            |          |
 | **displayName**     | A localizable name for display.                                                | -                 |                            |          |
 | **name**            | The programming name of the element.                                           | -                 |                            |          |
 | **schema**          | The data type of the Component, which is an instance of Interface.             | **href**/**type** | IRI of TM                  |          |
+
+
+DTDL:
+```json
+        {
+            "@type": "Component",
+            "name": "description",
+            "displayName": "Description",
+            "description": "Contains additional information",
+            "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+        },
+
+```
+
+TM:
+```json
+        {
+            "rel": "tm:submodel",
+            "title": "Description",
+            "description": "Contains additional information",
+            "href": "dtmi:digitaltwins:isa95:LangStringSet;1"
+        },
+```
