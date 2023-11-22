@@ -955,28 +955,50 @@ A Telemetry message sent by a particular device reporting its location would hav
 
 ## Relationship Level
 
-| DTDL Term / Concept    | DTDL Description                                                                                           | WoT TD Term | WoT TD Description | Comments |
-|------------------------|------------------------------------------------------------------------------------------------------------|-------------|--------------------|----------|
-| **"@type": "Command"** | If provided, must be "Relationship"                                                                        | ...         | ...                |          |
-| **@id**                | Identifier for the Relationship. Assigned automatically if not provided.                                   | ...         | ...                |          |
-| **comment**            | A comment for model authors                                                                                | ...         | ...                |          |
-| **description**        | Comment for model authors                                                                                  | ...         | ...                |          |
-| **displayName**        | A localizable name for display.                                                                            | ...         | ...                |          |
-| **maxMultiplicity**    | The max multiplicity for the realtionship target; defaults to the max allowable value                      | ...         | ...                |          |
-| **minMultiplicity**    | The min multiplicity for the realtionship target; defaults to the max allowable value                      | ...         | ...                |          |
-| **name**               | The programming name of the element.                                                                       | ...         | ...                |          |
-| **properties**         | A set of Properties that define Relationship-specific state.                                               | ...         | ...                |          |
-| **target**             | An Interface identifier. If no target is specified, each instance target is permitted to be any Interface. | ...         | ...                |          |
-| **writable**           | A boolean value that indicates whether the Relationship is writable or not.                                | ...         | ...                |          |
+| DTDL Term / Concept | DTDL Description                                                                                           | WoT Term                 | WoT Description                                          | Comments                      |
+|---------------------|------------------------------------------------------------------------------------------------------------|--------------------------|----------------------------------------------------------|-------------------------------|
+| **@type**           | If provided, must be "Relationship"                                                                        | ***"@type":"hctl:link"** |                                                          | Implicit, can add dtmi type   |
+| **@id**             | Identifier for the Relationship. Assigned automatically if not provided.                                   | **"@id"**                |                                                          |                               |
+| **comment**         | A comment for model authors                                                                                | -                        |                                                          |                               |
+| **description**     | Comment for model authors                                                                                  | -                        |                                                          | "td:description"              |
+| **displayName**     | A localizable name for display.                                                                            | -                        |                                                          | "td:title"                    |
+| **maxMultiplicity** | The max multiplicity for the realtionship target; defaults to the max allowable value                      | -                        |                                                          | Propose to W3C                |
+| **minMultiplicity** | The min multiplicity for the realtionship target; defaults to the max allowable value                      | -                        |                                                          | Propose to W3C                |
+| **name**            | The programming name of the element.                                                                       | **"rel"**                | A link relation type identifies the semantics of a link. | Is it used in DTDL?           |
+| **properties**      | A set of Properties that define Relationship-specific state.                                               | -                        |                                                          |                               |
+| **target**          | An Interface identifier. If no target is specified, each instance target is permitted to be any Interface. | **"href"**               | Target IRI of a link or submission target of a form.     |                               |
+| **writable**        | A boolean value that indicates whether the Relationship is writable or not.                                | -                        |                                                          | What does writable mean here? |
+
+From `Ontologies/ISA95/CommonObjectModels/Part2/OperationsSchedule/OperationsSchedule.json`
+```json
+        {
+            "@type": "Relationship",
+            "name": "isMadeUpOf",
+            "displayName": "Is made up of",
+            "description": "The operations requests that make up the operations schedule.",
+            "target": "dtmi:digitaltwins:isa95:OperationsRequest;1"
+        },
+```
+
+```json
+        {
+            "@type": "dtmi:Relationship",
+            "rel": "isMadeUpOf",
+            "title": "Is made up of",
+            "description": "The operations requests that make up the operations schedule.",
+            "href": "dtmi:digitaltwins:isa95:OperationsRequest;1"
+        },
+```
+
 
 ## Component Level
 
-| DTDL Term / Concept | DTDL Description                                                               | WoT TD Term | WoT TD Description | Comments |
-| ------------------- | ------------------------------------------------------------------------------ | ----------- | ------------------ | -------- |
-| **@type**           | This must be "Component".                                                      | ...         | ...                |          |
-| **@id**             | An identifer for the Component. If no @id is provided, assigned automatically. | ...         | ...                |          |
-| **comment**         | A comment for model authors.                                                   | ...         | ...                |          |
-| **description**     | A localizable description for display.                                         | ...         | ...                |          |
-| **displayName**     | A localizable name for display.                                                | ...         | ...                |          |
-| **name**            | The programming name of the element.                                           | ...         | ...                |          |
-| **schema**          | The data type of the Component, which is an instance of Interface.             | ...         | ...                |          |
+| DTDL Term / Concept | DTDL Description                                                               | WoT TD Term       | WoT TD Description         | Comments |
+|---------------------|--------------------------------------------------------------------------------|-------------------|----------------------------|----------|
+| **@type**           | This must be "Component".                                                      | **@type**         | This must be "tm:submodel" |          |
+| **@id**             | An identifer for the Component. If no @id is provided, assigned automatically. | **@id**           | Same as DTDL               |          |
+| **comment**         | A comment for model authors.                                                   | -                 |                            |          |
+| **description**     | A localizable description for display.                                         | -                 |                            |          |
+| **displayName**     | A localizable name for display.                                                | -                 |                            |          |
+| **name**            | The programming name of the element.                                           | -                 |                            |          |
+| **schema**          | The data type of the Component, which is an instance of Interface.             | **href**/**type** | IRI of TM                  |          |
