@@ -955,19 +955,19 @@ A Telemetry message sent by a particular device reporting its location would hav
 
 ## Relationship Level
 
-| DTDL Term / Concept | DTDL Description                                                                                           | WoT Term    | WoT Description                                          | Comments                      |
-|---------------------|------------------------------------------------------------------------------------------------------------|-------------|----------------------------------------------------------|-------------------------------|
-| **@type**           | If provided, must be "Relationship"                                                                        | **"@type"** | Implicitly "htcl:link"                                   | Recommend semantic link type? |
-| **@id**             | Identifier for the Relationship. Assigned automatically if not provided.                                   | **"@id"**   |                                                          |                               |
-| **comment**         | A comment for model authors                                                                                | -           |                                                          |                               |
-| **description**     | Comment for model authors                                                                                  | -           |                                                          | "td:description"              |
-| **displayName**     | A localizable name for display.                                                                            | -           |                                                          | "td:title"                    |
-| **maxMultiplicity** | The max multiplicity for the realtionship target; defaults to the max allowable value                      | -           |                                                          | Propose to W3C                |
-| **minMultiplicity** | The min multiplicity for the realtionship target; defaults to the max allowable value                      | -           |                                                          | Propose to W3C                |
-| **name**            | The programming name of the element.                                                                       | **"rel"**   | A link relation type identifies the semantics of a link. | Is it used in DTDL?           |
-| **properties**      | A set of Properties that define Relationship-specific state.                                               | -           |                                                          |                               |
-| **target**          | An Interface identifier. If no target is specified, each instance target is permitted to be any Interface. | **"href"**  | Target IRI of a link or submission target of a form.     |                               |
-| **writable**        | A boolean value that indicates whether the Relationship is writable or not.                                | -           |                                                          | What does writable mean here? |
+| DTDL Term / Concept | DTDL Description                                                                                           | WoT Term  | WoT Description                                          | Comments                      |
+|---------------------|------------------------------------------------------------------------------------------------------------|-----------|----------------------------------------------------------|-------------------------------|
+| **@type**           | If provided, must be "Relationship"                                                                        | **@type** | Implicitly "htcl:link"                                   | Recommend semantic link type? |
+| **@id**             | Identifier for the Relationship. Assigned automatically if not provided.                                   | **@id**   |                                                          |                               |
+| **comment**         | A comment for model authors                                                                                | -         |                                                          |                               |
+| **description**     | Comment for model authors                                                                                  | -         |                                                          | "td:description"              |
+| **displayName**     | A localizable name for display.                                                                            | -         |                                                          | "td:title"                    |
+| **maxMultiplicity** | The max multiplicity for the realtionship target; defaults to the max allowable value                      | -         |                                                          | Propose to W3C                |
+| **minMultiplicity** | The min multiplicity for the realtionship target; defaults to the max allowable value                      | -         |                                                          | Propose to W3C                |
+| **name**            | The programming name of the element.                                                                       | **rel**   | A link relation type identifies the semantics of a link. | Is it used in DTDL?           |
+| **properties**      | A set of Properties that define Relationship-specific state.                                               | -         |                                                          |                               |
+| **target**          | An Interface identifier. If no target is specified, each instance target is permitted to be any Interface. | **href**  | Target IRI of a link or submission target of a form.     |                               |
+| **writable**        | A boolean value that indicates whether the Relationship is writable or not.                                | -         |                                                          | What does writable mean here? |
 
 From `Ontologies/ISA95/CommonObjectModels/Part2/OperationsSchedule/OperationsSchedule.json`
 
