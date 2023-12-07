@@ -905,7 +905,7 @@ A Telemetry message sent by a particular device reporting its location would hav
 
 ```
 
-## Relationship Level
+## Relationship
 
 | DTDL Term / Concept | DTDL Description                                                                                           | WoT Term  | WoT Description                                          | Comments                      |
 |---------------------|------------------------------------------------------------------------------------------------------------|-----------|----------------------------------------------------------|-------------------------------|
@@ -914,9 +914,9 @@ A Telemetry message sent by a particular device reporting its location would hav
 | **comment**         | A comment for model authors                                                                                | -         |                                                          |                               |
 | **description**     | Comment for model authors                                                                                  | -         |                                                          | "td:description"              |
 | **displayName**     | A localizable name for display.                                                                            | -         |                                                          | "td:title"                    |
-| **maxMultiplicity** | The max multiplicity for the realtionship target; defaults to the max allowable value                      | -         |                                                          | Propose to W3C                |
-| **minMultiplicity** | The min multiplicity for the realtionship target; defaults to the max allowable value                      | -         |                                                          | Propose to W3C                |
-| **name**            | The programming name of the element.                                                                       | **rel**   | A link relation type identifies the semantics of a link. | Is it used in DTDL?           |
+| **maxMultiplicity** | The max multiplicity for the realtionship target; defaults to the max allowable value                      | -         |                                                          | **Propose to W3C**            |
+| **minMultiplicity** | The min multiplicity for the realtionship target; defaults to the max allowable value                      | -         |                                                          | **Propose to W3C**            |
+| **name**            | The programming name of the element.                                                                       | **rel**   | A link relation type identifies the semantics of a link. |                               |
 | **properties**      | A set of Properties that define Relationship-specific state.                                               | -         |                                                          |                               |
 | **target**          | An Interface identifier. If no target is specified, each instance target is permitted to be any Interface. | **href**  | Target IRI of a link or submission target of a form.     |                               |
 | **writable**        | A boolean value that indicates whether the Relationship is writable or not.                                | -         |                                                          | What does writable mean here? |
@@ -946,7 +946,7 @@ TM:
         },
 ```
 
-## Component Level
+## Component
 
 | DTDL Term / Concept | DTDL Description                                                               | WoT TD Term       | WoT TD Description         | Comments |
 |---------------------|--------------------------------------------------------------------------------|-------------------|----------------------------|----------|
@@ -981,14 +981,11 @@ TM:
         },
 ```
 
-
-# Unsolved Mappings
-
 ## Map (Dictionary pattern)
 
 | DTDL Term / Concept | DTDL Description                                                                     | WoT TD Term | WoT TD Description | Comments |
 | ------------------- | ------------------------------------------------------------------------------------ | ----------- | ------------------ | -------- |
-| **@type**           | This must be "Map". `                           `                                    | ...         | ...                |          |
+| **@type**           | This must be "Map".                                                                  | ...         | ...                |          |
 | **@id**             | An identifer for the Map. If no @id is provided, one will be assigned automatically. | ...         | ...                |          |
 | **comment**         | A comment for model authors.                                                         | ...         | ...                |          |
 | **description**     | A localizable description for display.                                               | ...         | ...                |          |
