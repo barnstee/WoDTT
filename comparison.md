@@ -439,6 +439,19 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 }
 ```
 
+## Shared Attributes
+
+Some term definitions in DTDL as well as in WoT may appear in different structures. The semantics of these terms are independent of their context, so they are discussed in general in this section to 
+
+| DTDL Term / Concept | DTDL Description                                                            | WoT TD Term      | WoT TD Description                                                                                                 | Comments                                                         |
+|---------------------|-----------------------------------------------------------------------------|------------------|--------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| **displayName**     | A localizable name for display.                                             | **title**        | Provides a human-readable title (e.g., display a text for UI representation) based on a default language.          | Derived from JSON schema. Proposal is to use the WoT definition. |
+|                     | Comment: displayName allows JSON-LD language map for multi-language support | **titles**       | Provides multi-language human-readable titles (e.g., display a text for UI representation in different languages). | Proposal is to keep WoT definition.                              |
+| **description**     | A localizable description for display.                                      | **description**  | (human-readable) information based on a default language.                                                          | Derived from JSON schema. Proposal is to use the WoT definition. |
+|                     | Comment: description allows JSON-LD language map for multi-language support | **descriptions** | Can be used to support (human-readable) information in different languages.                                        | Proposal is to keep WoT definition.                              |
+| **comment**         | A comment for model authors.                                                | -                |                                                                                                                    | Proposal is to keep the DTDL definition.                         |
+
+
 ## DTDL Interface / WoT Thing Model
 
 | DTDL Term / Concept      | DTDL Description                                                                                              | WoT TD Term             | WoT TD Description                                                                                                                                                       | Comments                                                                                                        |
@@ -446,11 +459,6 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 | **@context**             | The context to use when processing this Interface. For this version, it must be set to “dtmi:dtdl:context;3”. | **@context**            | The version of the TD Information Model defined in 5. TD Information Model of this specification is identified by the following IRI: https://www.w3.org/2022/wot/td/v1.1 | Proposal is to use the WoT definition                                                                           |
 | **@type**                | This must be “Interface”.                                                                                     | **@type**               | Thing Model definitions MUST use the keyword @type at top level and a value of type string or array that equals or respectively contains tm:ThingModel.                  | Proposal is to use the WoT definition                                                                           |
 | **@id**                  | An identifer for the Interface. (DTMI datatype)                                                               | **@id**                 | It is recommended that the id value of a Thing Model provides a placeholder such as "id": "urn:example:{{RANDOM_ID_PATTERN}}" for the TD generation process.             | Proposal is to introduce Thing Model id in WoT                                                                  |
-| **displayName**          | A localizable name for display.                                                                               | **title**               | Provides a human-readable title (e.g., display a text for UI representation) based on a default language.                                                                | Derived from JSON schema. Proposal is to use the WoT definition.                                                |
-|                          | Comment: displayName allows JSON-LD language map for multi-language support                                   | **titles**              | Provides multi-language human-readable titles (e.g., display a text for UI representation in different languages).                                                       | Proposal is to keep WoT definition.                                                                             |
-| **description**          | A localizable description for display.                                                                        | **description**         | (human-readable) information based on a default language.                                                                                                                | Derived from JSON schema. Proposal is to use the WoT definition.                                                |
-|                          | Comment: description allows JSON-LD language map for multi-language support                                   | **descriptions**        | Can be used to support (human-readable) information in different languages.                                                                                              | Proposal is to keep WoT definition.                                                                             |
-| **comment**              | A comment for model authors.                                                                                  |                         |                                                                                                                                                                          | Proposal is to keep the DTDL definition.                                                                        |
 |                          |                                                                                                               | **version**             | Provides version information.                                                                                                                                            | Proposal is to keep WoT definition.                                                                             |
 |                          |                                                                                                               | **created**             | Provides information when the TD instance was created.                                                                                                                   | Proposal is to keep WoT definition.                                                                             |
 |                          |                                                                                                               | **modified**            | Provides information when the TD instance was last modified.                                                                                                             | Proposal is to keep WoT definition.                                                                             |
@@ -507,13 +515,10 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 }
 ```
 
-## Property/Telemetry Level
+## Property/Property
 
 | DTDL Term / Concept | DTDL Description                                                        | WoT TD Term        | WoT TD Description                                                                                                     | Comments                                                            |
 | ------------------- | ----------------------------------------------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| **displayName**     | A localizable name for display.                                         | **title**          | Provides a human-readable title (e.g., display a text for UI representation) based on a default language.              | Derived from JSON schema. Proposal is to use the WoT definition.    |
-| **description**     | A localizable description for display.                                  | **description**    | (human-readable) information based on a default language.                                                              | Derived from JSON schema. Proposal is to use the WoT definition.    |
-| **comment**         | A comment for model authors.                                            |                    |                                                                                                                        | Proposal is to keep the DTDL definition.                            |
 | **name**            | The programming name of the element.                                    | **{property key}** | Comment: Programming name is assigned as key name of the property                                                      | Proposal is to keep the DTDL definition but convert to JSON-LD 1.1. |
 | **schema**          | The data type of the Property, which is an instance of Schema.          | **type**           | Assignment of JSON-based data types compatible with JSON Schema                                                        | Proposal is to keep WoT definition.                                 |
 | **writable**        | A boolean value that indicates whether the Property is writable or not. | **writeOnly**      | Boolean value that is a hint to indicate whether a property interaction / value is write only (=true) or not (=false). | Proposal is to use the WoT definition.                              |
@@ -561,18 +566,15 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
 
 ```
 
-## Commands Level
+## Commands/Actions
 
-| DTDL Term / Concept | DTDL Description                                                     | WoT TD Term       | WoT TD Description                                                | Comments                                                            |
-| ------------------- | -------------------------------------------------------------------- | ----------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
-| **@type**           | If provided, must be "Command"                                       | **action**        |                                                                   | Proposal: Use JSON-LD 1.1 style for better JSON processing          |
-| **@id**             | Identifier for the commnand. Assigned automatically if not provided. |                   | Same concept from JSON-LD                                         |                                                                     |
-| **comment**         | A comment for model authors                                          |                   |                                                                   |                                                                     |
-| **description**     | Comment for model authors                                            | **description**   | (human-readable) information based on a default language.         |                                                                     |
-| **displayName**     | A localizable name for display.                                      | **title**         | Human-readable title based on a default language.                 |                                                                     |
-| **name**            | The programming name of the element.                                 | **{command-key}** | Comment: Programming name is assigned as key name of the property | Proposal is to keep the DTDL definition but convert to JSON-LD 1.1. |
-| **request**         | A description of the input to the Command.                           | **input**         | The input data schema of the Action {DataSchema format}           |                                                                     |
-| **response**        | A description of the output of the Command.                          | **output**        | The output data schema of the Action {DataSchema format}          |                                                                     |
+| DTDL Term / Concept | DTDL Description                                                     | WoT TD Term   | WoT TD Description                                                | Comments                                                            |
+|---------------------|----------------------------------------------------------------------|---------------|-------------------------------------------------------------------|---------------------------------------------------------------------|
+| **@type**           | If provided, must be "Command"                                       | **action**    |                                                                   | Proposal: Use JSON-LD 1.1 style for better JSON processing          |
+| **@id**             | Identifier for the commnand. Assigned automatically if not provided. | **@id**       | Same concept from JSON-LD                                         | Equal, no change needed                                             |
+| **name**            | The programming name of the element.                                 | **{map key}** | Comment: Programming name is assigned as key name of the property | Proposal is to keep the DTDL definition but convert to JSON-LD 1.1. |
+| **request**         | A description of the input to the Command.                           | **input**     | The input data schema of the Action {DataSchema format}           | Proposal is to use the WoT definition                               |
+| **response**        | A description of the output of the Command.                          | **output**    | The output data schema of the Action {DataSchema format}          | Proposal is to use the WoT definition                               |
 
 ### Examples
 
@@ -647,14 +649,11 @@ The schema for an Array's element can itself be a primitive or complex schema.
 
 The chart below lists the properties that an Array may have.
 
-| DTDL Term / Concept | DTDL Description                                                                       | WoT TD Term (JSON schema) | WoT TD Description                                            | Comments                                                           |
-| ------------------- | -------------------------------------------------------------------------------------- | --------------------------| ------------------------------------------------------------- | ------------------------------------------------------------------ |
-| **@type**           | This must be "Array".                                                                  | ...                       | ...                                                           | Proposal is to use the JSON schema and map DTDL primitives to it.  |
-| **@id**             | An identifer for the Array. If no @id is provided, one will be assigned automatically. | ...                       | ...                                                           |  "                                                                 |
-| **comment**         | A comment for model authors.                                                           | ...                       | ...                                                           |  "                                                                 |
-| **description**     | A localizable description for display.                                                 | **description**           | (human-readable) information based on a default language.     |  "                                                                 |
-| **displayName**     | A localizable name for display.                                                        | **title**                 | (human-readable) title based on a default language.           |  "                                                                 |
-| **elementSchema**   | The data type of each element in the Array, which is an instance of Schema.            | **items.type**            | The definition of the array type is based on DataSchema Types |  "                                                                 |
+| DTDL Term / Concept | DTDL Description                                                                       | WoT TD Term (JSON schema) | WoT TD Description                                                               | Comments                                                          |
+|---------------------|----------------------------------------------------------------------------------------|---------------------------|----------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| **@type**           | This must be "Array".                                                                  | **type**                  | Assignment of JSON-based data types compatible with JSON Schema (... array ...). | Proposal is to use the JSON schema and map DTDL primitives to it. |
+| **@id**             | An identifer for the Array. If no @id is provided, one will be assigned automatically. | ...                       | ...                                                                              | "                                                                 |
+| **elementSchema**   | The data type of each element in the Array, which is an instance of Schema.            | **items.type**            | The definition of the array type is based on DataSchema Types                    | "                                                                 |
 
 ### Examples
 
@@ -662,10 +661,13 @@ The chart below lists the properties that an Array may have.
 
 ```json
 
-"schema": {
-  "elementSchema": "double",
-  "displayName": "RGB color value",
-  "@type": "Array"
+{
+  "@type": "Telemetry",
+  "name": "ledState",
+  "schema": {
+    "@type": "Array",
+    "elementSchema": "boolean"
+  }
 }
 
 ```
@@ -689,27 +691,20 @@ The chart below lists the properties that an Array may have.
 
 ## Enum
 
-| DTDL Term / Concept | DTDL Description                                                                      | WoT TD Term     | WoT TD Description                                        | Comments                                                           |
-| ------------------- | ------------------------------------------------------------------------------------- | --------------- | --------------------------------------------------------- | ------------------------------------------------------------------ |
-| **@type**           | This must be "Enum".                                                                  | ...             | ...                                                       | Proposal is to use JSON schema and "fix" both DTDL and WoT with it |
-| **@id**             | An identifer for the Enum. If no @id is provided, one will be assigned automatically. | ...             | ...                                                       |  "                                                                 |
-| **comment**         | A comment for model authors.                                                          | ...             | ...                                                       |  "                                                                 |
-| **description**     | A localizable description for display.                                                | **description** | (human-readable) information based on a default language. |  "                                                                 |
-| **displayName**     | A localizable name for display.                                                       | **title**       | (human-readable) title based on a default language.       |  "                                                                 |
-| **enumValues**      | A set of name/value mappings for the Enum.                                            | **enum**        | A list of strings representing the possible enum values   |  "                                                                 |
-| **valueSchema**     | The data type for the enumValues; all values must be of the same type.                | **type**        | ...                                                       |  "                                                                 |
+| DTDL Term / Concept | DTDL Description                                                                      | WoT TD Term     | WoT TD Description                                        | Comments                                |
+|---------------------|---------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------|-----------------------------------------|
+| **@type**           | This must be "Enum".                                                                  | ...             | ...                                                       | Proposal is to keep the DTDL definition |
+| **@id**             | An identifer for the Enum. If no @id is provided, one will be assigned automatically. | ...             | ...                                                       | "                                       |
+| **enumValues**      | A set of name/value mappings for the Enum.                                            | **enum**        | A list of strings representing the possible enum values   | "                                       |
+| **valueSchema**     | The data type for the enumValues; all values must be of the same type.                | **type**        | ...                                                       | "                                       |
 
 ### EnumValue
 
-| DTDL Term / Concept | DTDL Description                                                                              | WoT TD Term  | WoT TD Description                             | Comments |
-| ------------------- | --------------------------------------------------------------------------------------------- | ------------ | ---------------------------------------------- | -------- |
-| **@type**           | If provided, must be "EnumValue".                                                             | ...          | ...                                            |          |
-| **@id**             | An identifer for the EnumValue. Assigned automatically if not provided                        | ...          | ...                                            |          |
-| **comment**         | A comment for model authors.                                                                  | ...          | ...                                            |          |
-| **description**     | A localizable description for display.                                                        |              |                                                |          |
-| **displayName**     | A localizable name for display.                                                               | **enum.key** | In TMs, the displayName is the name of the enum itself |          |
-| **enumValue**       | The on-the-wire value that maps to the EnumValue, which may be either an integer or a string. | **enum.key** | In TMs, the value is the name of the enum itself       |          |
-| **name**            | The programming name of the element.                                                          | **enum.key** | In TMs, the name is the name of the enum itself        |          |
+| DTDL Term / Concept | DTDL Description                                                       | WoT TD Term    | WoT TD Description                              | Comments                                |
+|---------------------|------------------------------------------------------------------------|----------------|-------------------------------------------------|-----------------------------------------|
+| **@type**           | If provided, must be "EnumValue".                                      | ...            | ...                                             | Proposal is to keep the DTDL definition |
+| **@id**             | An identifer for the EnumValue. Assigned automatically if not provided | ...            | ...                                             | "                                       |
+| **name**            | The programming name of the element.                                   | **enum.value** | In TMs, the name is the name of the enum itself | "                                       |
 
 ### Examples
 
@@ -724,19 +719,19 @@ The chart below lists the properties that an Array may have.
       "@type": "EnumValue",
       "displayName": "readyToCharge",
       "name": "readyToCharge",
-      "enumValue": "readyToCharge"
+      "enumValue": 1
     },
     {
       "@type": "EnumValue",
       "displayName": "charging",
       "name": "charging",
-      "enumValue": "charging"
+      "enumValue": 8
     },
     {
       "@type": "EnumValue",
       "displayName": "stopCharging",
       "name": "stopCharging",
-      "enumValue": "stopCharging"
+      "enumValue": 7
     }
   ],
   "@type": "Enum"
