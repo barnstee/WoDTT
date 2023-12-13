@@ -501,8 +501,9 @@ Hint: JSON-LD keywords like @id, @context, @type etc. are ignored.
   "security": "nosec_sc",
   "base": "http://localhost:3000",
   "title": "Test Model",
-  "properties": []
-
+  "properties": [],
+  "actions": [],
+  "events": []
 }
 ```
 
