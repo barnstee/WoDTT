@@ -630,16 +630,16 @@ _Thing Model 1.1_
 ## Primitive Schema / WoT Type Definitions
 
 | DTDL Term / Concept | DTDL Description                                                                                                          | WoT TD Term (JSON schema)           | WoT TD Description | Comments                                                                       |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ------------------ | ------------------------------------------------------------------------------ |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------|-------------------------------------|--------------------|--------------------------------------------------------------------------------|
 | **boolean**         | a boolean value                                                                                                           | type: **boolean**                   | ...                | Proposal is to use the JSON schema and map DTDL primitives to it.              |
-| **date**            | a date in ISO 8601 format, per [RFC 3339](https://tools.ietf.org/html/rfc3339)                                            | type: **string + format=date-time** | ...                |  "                                                                             |
-| **dateTime**        | a date and time in ISO 8601 format per [RFC 3339](https://tools.ietf.org/html/rfc3339)                                    | type: **string + format=date-time** | ...                |  "                                                                             |
-| **double**          | a finite numeric value that is expressible in IEEE 754 double-precision floating point format, conformant with xsd:double | type: **number**                    | ...                |  "                                                                             |
-| **duration**        | a duration in ISO 8601 format                                                                                             | type: **string + format=duration**  | ...                |  "                                                                             |
-| **float**           | a finite numeric value that is expressible in IEEE 754 single-precision floating point format, conformant with xsd:float  | type: **number**                    |                    | for conversion purposes, number will be always mapped as a double (TM to DTDL) |
-| **integer**         | a signed integral numeric value that is expressible in 4 bytes                                                            | type: **integer**                   | ...                |  Proposal is to use the JSON schema and map DTDL primitives to it.             |
-| **long**            | a signed integral numeric value that is expressible in 8 bytes                                                            | type: **number**                    |                    | for conversion purposes, number will be always mapped as a double (TM to DTDL) |
-| **string**          | a UTF8 string                                                                                                             | **string**                          | ...                | Proposal is to use the JSON schema and map DTDL primitives to it.              |
+| **date**            | a date in ISO 8601 format, per [RFC 3339](https://tools.ietf.org/html/rfc3339)                                            | type: **string + format=date-time** | ...                | "                                                                              |
+| **dateTime**        | a date and time in ISO 8601 format per [RFC 3339](https://tools.ietf.org/html/rfc3339)                                    | type: **string + format=date-time** | ...                | "                                                                              |
+| **double**          | a finite numeric value that is expressible in IEEE 754 double-precision floating point format, conformant with xsd:double | type: **number**                    | ...                | "                                                                              |
+| **duration**        | a duration in ISO 8601 format                                                                                             | type: **string + format=duration**  | ...                | "                                                                              |
+| **float**           | a finite numeric value that is expressible in IEEE 754 single-precision floating point format, conformant with xsd:float  | type: **number**                    | ...                | for conversion purposes, number will be always mapped as a double (TM to DTDL) |
+| **integer**         | a signed integral numeric value that is expressible in 4 bytes                                                            | type: **integer**                   | ...                | Proposal is to use the JSON schema and map DTDL primitives to it.              |
+| **long**            | a signed integral numeric value that is expressible in 8 bytes                                                            | type: **number**                    | ...                | for conversion purposes, number will be always mapped as a double (TM to DTDL) |
+| **string**          | a UTF8 string                                                                                                             | type: **string**                    | ...                | Proposal is to use the JSON schema and map DTDL primitives to it.              |
 | **time**            | a time in ISO 8601 format, per [RFC 3339](https://tools.ietf.org/html/rfc3339)                                            | type: **string + format=time**      | ...                | Proposal is to use the JSON schema and map DTDL primitives to it.              |
 
 ## Array
@@ -705,6 +705,11 @@ The chart below lists the properties that an Array may have.
 | **@type**           | If provided, must be "EnumValue".                                      | ...            | ...                                             | Proposal is to keep DTDL definition |
 | **@id**             | An identifer for the EnumValue. Assigned automatically if not provided | ...            | ...                                             | "                                   |
 | **name**            | The programming name of the element.                                   | **enum.value** | In TMs, the name is the name of the enum itself | "                                   |
+
+### Note
+
+JSON Schema omits the assignment of explicit numbers/strings to literal values. The proposal is to keep JSON Schema compatibility, but extend with DTDL definition of explicit mapping.
+
 
 ### Examples
 
@@ -868,14 +873,20 @@ The chart below lists the properties that a Field may have.
 
 DTDL provides a set of geospatial schemas, based on [GeoJSON](https://geojson.org/), for modeling a variety of geographic data structures.
 
-| DTDL Term / Concept | DTDL Description                                                            | WoT TD Term | WoT TD Description | Comments                           |
-| ------------------- | --------------------------------------------------------------------------- | ----------- | ------------------ | ---------------------------------- |
+| DTDL Term / Concept | DTDL Description                                                            | WoT TD Term | WoT TD Description | Comments                    |
+|---------------------|-----------------------------------------------------------------------------|-------------|--------------------|-----------------------------|
 | **lineString**      | GeoJSON LineString - dtmi:standard:schema:geospatial:lineString;3           | ...         | ...                | Proposal is to keep GEoJSON |
-| **multiLineString** | GeoJSON MultiLineString - dtmi:standard:schema:geospatial:multiLineString;3 | ...         | ...                |  "                                 |
-| **multiPoint**      | GeoJSON MultiPoint - dtmi:standard:schema:geospatial:multiPoint;3           | ...         | ...                |  "                                 |
-| **multiPolygon**    | GeoJSON MultiPolygon - dtmi:standard:schema:geospatial:multiPolygon;3       | ...         | ...                |  "                                 |
-| **point**           | GeoJSON Point - dtmi:standard:schema:geospatial:point;3                     | ...         | ...                |  "                                 |
-| **polygon**         | GeoJSON Polygon - dtmi:standard:schema:geospatial:polygon;3                 | ...         | ...                |  "                                 |
+| **multiLineString** | GeoJSON MultiLineString - dtmi:standard:schema:geospatial:multiLineString;3 | ...         | ...                | "                           |
+| **multiPoint**      | GeoJSON MultiPoint - dtmi:standard:schema:geospatial:multiPoint;3           | ...         | ...                | "                           |
+| **multiPolygon**    | GeoJSON MultiPolygon - dtmi:standard:schema:geospatial:multiPolygon;3       | ...         | ...                | "                           |
+| **point**           | GeoJSON Point - dtmi:standard:schema:geospatial:point;3                     | ...         | ...                | "                           |
+| **polygon**         | GeoJSON Polygon - dtmi:standard:schema:geospatial:polygon;3                 | ...         | ...                | "                           |
+
+### Note
+
+GeoJSON is well defined and supports both JSON-LD as well as JSON-Schema. The proposal is to just use these definitions in Thing Models, but not as mandatory, as there are other geospatial standards that are relevant in other fields.
+If GeoJSON is used in Thing Models however, it can be recognized in DTDLs.
+
 
 ### Examples
 
@@ -905,6 +916,19 @@ A Telemetry message sent by a particular device reporting its location would hav
 }
 
 ```
+
+
+#### _Thing Model 1.1_
+
+```json
+"location": {
+  "@type": "geojson:Point",
+  "type": "object",
+  "$ref": "geojson" 
+}
+```
+
+
 
 ## Relationship
 
@@ -996,25 +1020,25 @@ TM:
 
 | DTDL Term / Concept | DTDL Description                                                                        | WoT TD Term | WoT TD Description | Comments |
 |---------------------|-----------------------------------------------------------------------------------------|-------------|--------------------|----------|
-| **@type**           | If provided, must be "MapKey".                                                          | ...         | ...                |          |
-| **@id**             | An identifer for the MapKey. If no @id is provided, one will be assigned automatically. | ...         | ...                |          |
-| **comment**         | A comment for model authors.                                                            | ...         | ...                |          |
-| **description**     | A localizable description for display.                                                  | ...         | ...                |          |
-| **displayName**     | A localizable name for display.                                                         | ...         | ...                |          |
-| **name**            | The programming name of the element.                                                    | ...         | ...                |          |
-| **schema**          | The data type of the Map's key, which must be string.                                   | ...         | ...                |          |
+| **@type**           | If provided, must be "MapKey".                                                          | ...         | ...                | "        |
+| **@id**             | An identifer for the MapKey. If no @id is provided, one will be assigned automatically. | ...         | ...                | "        |
+| **comment**         | A comment for model authors.                                                            | ...         | ...                | "        |
+| **description**     | A localizable description for display.                                                  | ...         | ...                | "        |
+| **displayName**     | A localizable name for display.                                                         | ...         | ...                | "        |
+| **name**            | The programming name of the element.                                                    | ...         | ...                | "        |
+| **schema**          | The data type of the Map's key, which must be string.                                   | ...         | ...                | "        |
 
 ### MapValue
 
 | DTDL Term / Concept | DTDL Description                                                        | WoT TD Term | WoT TD Description | Comments |
-| ------------------- | ----------------------------------------------------------------------- | ----------- | ------------------ | -------- |
-| **@type**           | If provided, must be "MapValue".                                        | ...         | ...                |          |
-| **@id**             | An identifer for the MapValue. Assigned automatically if none provided. | ...         | ...                |          |
-| **comment**         | A comment for model authors.                                            | ...         | ...                |          |
-| **description**     | A localizable description for display.                                  | ...         | ...                |          |
-| **displayName**     | A localizable name for display.                                         | ...         | ...                |          |
-| **name**            | The programming name of the element.                                    | ...         | ...                |          |
-| **schema**          | The data type of the element, which is an instance of Schema.           | ...         | ...                |          |
+|---------------------|-------------------------------------------------------------------------|-------------|--------------------|----------|
+| **@type**           | If provided, must be "MapValue".                                        | ...         | ...                | "        |
+| **@id**             | An identifer for the MapValue. Assigned automatically if none provided. | ...         | ...                | "        |
+| **comment**         | A comment for model authors.                                            | ...         | ...                | "        |
+| **description**     | A localizable description for display.                                  | ...         | ...                | "        |
+| **displayName**     | A localizable name for display.                                         | ...         | ...                | "        |
+| **name**            | The programming name of the element.                                    | ...         | ...                | "        |
+| **schema**          | The data type of the element, which is an instance of Schema.           | ...         | ...                | "        |
 
 
 ### Examples
@@ -1066,3 +1090,15 @@ Value
 
 ## Summary
 
+Luckily four main topic make up for the bulk of the differences:
+
+1. DTDL still uses JSON-LD 1.0: moving to JSON-LD 1.1 is a progression for DTDL even outside of this context
+2. In DTDL contents is an array of typed objects, while WoT splits the types into the separate maps "properties", "actions", "events"  using the name of the objects the key
+3. DTDL uses a proprietary schema definition for primitive and complex types. WoT uses the standard JSON-Schema
+4. Most keywords are semantically equivalent and make it easy to converge by renaming the keys
+
+From our first analysis, three additions exist in DTDL that WoT doesn't support, yet.
+
+1. Enum mapping from specific values to strings is missing in WoT
+2. Relationship target and multiplicity are solved in WoT through semantic technology. DTDL introduces these concepts for JSON
+3. Relationship may have properties in DTDL
