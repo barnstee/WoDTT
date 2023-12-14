@@ -1045,7 +1045,6 @@ TM:
 
 #### _DTDL v3_
 
-Schema:
 ```json
 {
   "@type": "Property",
@@ -1079,7 +1078,7 @@ Schema:
 }
 ```
 
-Value
+#### _Value_
 ```json
 "modules": {
   "moduleName": "operational_state",
