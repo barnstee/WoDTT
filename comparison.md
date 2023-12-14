@@ -1089,7 +1089,7 @@ Value
 
 ## Summary of Conversion Work Required
 
-Luckily, only **five** topic make up the bulk differences:
+Luckily, only **five** topic make up the main differences:
 
 1. DTDL still uses JSON-LD 1.0: moving to JSON-LD 1.1 is a progression for DTDL even outside of this context.
 2. In DTDL contents is an array of typed objects, while WoT splits the types into the separate maps "properties", "actions", "events"  using the name of the objects the key.
