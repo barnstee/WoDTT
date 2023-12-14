@@ -1096,7 +1096,7 @@ Luckily, only **five** topic make up the main differences:
 4. Most keywords are semantically equivalent and make it easy to converge by renaming the keys.
 5. WoT should label semantic links explicitly. Proposal is to introduce an additional "@type".
 
-From our first analysis, three additions exist in DTDL that WoT doesn't support, yet.
+From our first analysis, three additions exist in DTDL that WoT doesn't support, yet:
 
 1. Enum mapping from specific values to strings is missing in WoT.
 2. Relationship target and multiplicity are solved in WoT through semantic technology. DTDL introduces these concepts for JSON.
