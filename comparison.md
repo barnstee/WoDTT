@@ -1065,15 +1065,6 @@ Schema:
 }
 ```
 
-Value
-```json
-"modules": {
-  "moduleA": "running",
-  "moduleB": "stopped"
-}
-```
-
-
 #### _Thing Model 1.1_
 
 ```json
@@ -1081,25 +1072,33 @@ Value
  "@type": "dtdl:Map",
  "type": "object",
  "properties": {
-   "moduleA": {"type": "number"},
-   "moduleB": {"type": "number"}
+   "moduleName": {"type": "string"},
+   "moduleState": {"type": "string"}
  },
  "additionalProperties": false
 }
 ```
 
-## Summary
+Value
+```json
+"modules": {
+  "moduleName": "operational_state",
+  "moduleState": "stopped"
+}
+```
 
-Luckily five main topic make up for the bulk of the differences:
+## Summary of Conversion Work Required
 
-1. DTDL still uses JSON-LD 1.0: moving to JSON-LD 1.1 is a progression for DTDL even outside of this context
-2. In DTDL contents is an array of typed objects, while WoT splits the types into the separate maps "properties", "actions", "events"  using the name of the objects the key
-3. DTDL uses a proprietary schema definition for primitive and complex types. WoT uses the standard JSON-Schema
-4. Most keywords are semantically equivalent and make it easy to converge by renaming the keys
-5. WoT should label semantic links explicitly. Proposal is to introduce an additional "@type"
+Luckily, only **five** topic make up the bulk differences:
+
+1. DTDL still uses JSON-LD 1.0: moving to JSON-LD 1.1 is a progression for DTDL even outside of this context.
+2. In DTDL contents is an array of typed objects, while WoT splits the types into the separate maps "properties", "actions", "events"  using the name of the objects the key.
+3. DTDL uses a proprietary schema definition for primitive and complex types. WoT uses the standard JSON-Schema.
+4. Most keywords are semantically equivalent and make it easy to converge by renaming the keys.
+5. WoT should label semantic links explicitly. Proposal is to introduce an additional "@type".
 
 From our first analysis, three additions exist in DTDL that WoT doesn't support, yet.
 
-1. Enum mapping from specific values to strings is missing in WoT
-2. Relationship target and multiplicity are solved in WoT through semantic technology. DTDL introduces these concepts for JSON
-3. Relationship may have properties in DTDL
+1. Enum mapping from specific values to strings is missing in WoT.
+2. Relationship target and multiplicity are solved in WoT through semantic technology. DTDL introduces these concepts for JSON.
+3. Relationship may have properties in DTDL.
