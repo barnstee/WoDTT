@@ -518,7 +518,7 @@ Some term definitions in DTDL as well as in WoT may appear in different structur
 ## Property/Property
 
 | DTDL Term / Concept | DTDL Description                                                        | WoT TD Term        | WoT TD Description                                                                                                     | Comments                                                            |
-| ------------------- | ----------------------------------------------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+|---------------------|-------------------------------------------------------------------------|--------------------|------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
 | **name**            | The programming name of the element.                                    | **{property key}** | Comment: Programming name is assigned as key name of the property                                                      | Proposal is to keep the DTDL definition but convert to JSON-LD 1.1. |
 | **schema**          | The data type of the Property, which is an instance of Schema.          | **type**           | Assignment of JSON-based data types compatible with JSON Schema                                                        | Proposal is to keep WoT definition.                                 |
 | **writable**        | A boolean value that indicates whether the Property is writable or not. | **writeOnly**      | Boolean value that is a hint to indicate whether a property interaction / value is write only (=true) or not (=false). | Proposal is to use the WoT definition.                              |
@@ -691,82 +691,87 @@ The chart below lists the properties that an Array may have.
 
 ## Enum
 
-| DTDL Term / Concept | DTDL Description                                                                      | WoT TD Term     | WoT TD Description                                        | Comments                                |
-|---------------------|---------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------|-----------------------------------------|
-| **@type**           | This must be "Enum".                                                                  | ...             | ...                                                       | Proposal is to keep the DTDL definition |
-| **@id**             | An identifer for the Enum. If no @id is provided, one will be assigned automatically. | ...             | ...                                                       | "                                       |
-| **enumValues**      | A set of name/value mappings for the Enum.                                            | **enum**        | A list of strings representing the possible enum values   | "                                       |
-| **valueSchema**     | The data type for the enumValues; all values must be of the same type.                | **type**        | ...                                                       | "                                       |
+| DTDL Term / Concept | DTDL Description                                                                      | WoT TD Term | WoT TD Description                                      | Comments                                   |
+|---------------------|---------------------------------------------------------------------------------------|-------------|---------------------------------------------------------|--------------------------------------------|
+| **@type**           | This must be "Enum".                                                                  | ...         | ...                                                     | Proposal is to merge JSON Schema with DTDL |
+| **@id**             | An identifer for the Enum. If no @id is provided, one will be assigned automatically. | ...         | ...                                                     | "                                          |
+| **enumValues**      | A set of name/value mappings for the Enum.                                            | **enum**    | A list of strings representing the possible enum values | "                                          |
+| **valueSchema**     | The data type for the enumValues; all values must be of the same type.                | **type**    | ...                                                     | "                                          |
 
 ### EnumValue
 
-| DTDL Term / Concept | DTDL Description                                                       | WoT TD Term    | WoT TD Description                              | Comments                                |
-|---------------------|------------------------------------------------------------------------|----------------|-------------------------------------------------|-----------------------------------------|
-| **@type**           | If provided, must be "EnumValue".                                      | ...            | ...                                             | Proposal is to keep the DTDL definition |
-| **@id**             | An identifer for the EnumValue. Assigned automatically if not provided | ...            | ...                                             | "                                       |
-| **name**            | The programming name of the element.                                   | **enum.value** | In TMs, the name is the name of the enum itself | "                                       |
+| DTDL Term / Concept | DTDL Description                                                       | WoT TD Term    | WoT TD Description                              | Comments                            |
+|---------------------|------------------------------------------------------------------------|----------------|-------------------------------------------------|-------------------------------------|
+| **@type**           | If provided, must be "EnumValue".                                      | ...            | ...                                             | Proposal is to keep DTDL definition |
+| **@id**             | An identifer for the EnumValue. Assigned automatically if not provided | ...            | ...                                             | "                                   |
+| **name**            | The programming name of the element.                                   | **enum.value** | In TMs, the name is the name of the enum itself | "                                   |
 
 ### Examples
 
 #### _DTDL v3_
 
+Schema:
 ```json
-"schema": {
-  "valueSchema": "string",
-  "description": "Current car status (readyToCharge, charging, stopCharging)",
-  "enumValues": [
-    {
-      "@type": "EnumValue",
-      "displayName": "readyToCharge",
-      "name": "readyToCharge",
-      "enumValue": 1
-    },
-    {
-      "@type": "EnumValue",
-      "displayName": "charging",
-      "name": "charging",
-      "enumValue": 8
-    },
-    {
-      "@type": "EnumValue",
-      "displayName": "stopCharging",
-      "name": "stopCharging",
-      "enumValue": 7
-    }
-  ],
-  "@type": "Enum"
+{
+  "@type": "Telemetry",
+  "name": "state",
+  "schema": {
+    "@type": "Enum",
+    "valueSchema": "integer",
+    "enumValues": [
+      {
+        "name": "offline",
+        "displayName": "Offline",
+        "enumValue": 3
+      },
+      {
+        "name": "online",
+        "displayName": "Online",
+        "enumValue": 4
+      }
+    ]
+  }
 }
+```
+
+Value:
+```json
+"state": 3
 ```
 
 #### _Thing Model 1.1_
 
 ```json
 
-
- "status": {
-   "type": "string",
-   "description": "Current car status (readyToCharge, charging, stopCharging)",
-   "enum": [
-     "readyToCharge",
-     "charging",
-     "stopCharging"
-   ],
-   "forms": []
- }
-
+"state": {
+  "@type": "dtdl:Enum",
+  "type": "number",
+  "enum": [3, 4],
+  "schema": {
+    "dtdl:enumValues": [
+      {
+        "dtdl:name": "offline",
+        "title": "Offline",
+        "enumValue": 3
+      },
+      {
+        "dtdl:name": "online",
+        "title": "Online",
+        "enumValue": 4
+      }
+    ]
+  }
+}
 
 ```
 
 ## Object
 
-| DTDL Term / Concept | DTDL Description                                                                        | WoT TD Term     | WoT TD Description                                                          | Comments |
-| ------------------- | --------------------------------------------------------------------------------------- | --------------- | --------------------------------------------------------------------------- | -------- |
-| **@type**           | This must be "Object".                                                                  | ...             | ...                                                                         |          |
-| **@id**             | An identifer for the Object. If no @id is provided, one will be assigned automatically. | ...             | ...                                                                         |          |
-| **comment**         | A comment for model authors.                                                            | ...             | ...                                                                         |          |
-| **description**     | A localizable description for display.                                                  | **description** | (human-readable) information based on a default language.                   |          |
-| **displayName**     | A localizable name for display.                                                         | **title**       | (human-readable) title based on a default language.                         |          |
-| **fields**          | A set of field descriptions, one for each field in the Object.                          | **properties**  | A dictionary of object properties which follow the DataSchema specification |          |
+| DTDL Term / Concept | DTDL Description                                                                        | WoT TD Term    | WoT TD Description                                                          | Comments                                                          |
+|---------------------|-----------------------------------------------------------------------------------------|----------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------|
+| **@type**           | This must be "Object".                                                                  | **type**       | object                                                                      | Proposal is to use the JSON schema and map DTDL primitives to it. |
+| **@id**             | An identifer for the Object. If no @id is provided, one will be assigned automatically. | ...            | ...                                                                         | "                                                                 |
+| **fields**          | A set of field descriptions, one for each field in the Object.                          | **properties** | A dictionary of object properties which follow the DataSchema specification | "                                                                 |
 
 ### Field
 
@@ -774,15 +779,12 @@ A Field describes a field in an Object.
 
 The chart below lists the properties that a Field may have.
 
-| DTDL Term / Concept | DTDL Description                                                                       | WoT TD Term        | WoT TD Description                                        | Comments |
-| ------------------- | -------------------------------------------------------------------------------------- | ------------------ | --------------------------------------------------------- | -------- |
-| **@type**           | If provided, must be "Field".                                                          | ...                | ...                                                       |          |
-| **@id**             | An identifer for the Field. If no @id is provided, one will be assigned automatically. | ...                | ...                                                       |          |
-| **comment**         | A comment for model authors.                                                           | ...                | ...                                                       |          |
-| **description**     | A localizable description for display.                                                 | **description**    | (human-readable) information based on a default language. |          |
-| **displayName**     | A localizable name for display.                                                        | **title**          | (human-readable) title based on a default language.       |          |
-| **name**            | The programming name of the element.                                                   | **properties.key** | the name is the key of a property field                   |          |
-| **schema**          | The data type of the element, which is an instance of Schema.                          | **type**           | Type follows the DataSchema specification                 |          |
+| DTDL Term / Concept | DTDL Description                                                                       | WoT TD Term             | WoT TD Description                        | Comments                                                          |
+|---------------------|----------------------------------------------------------------------------------------|-------------------------|-------------------------------------------|-------------------------------------------------------------------|
+| **@type**           | If provided, must be "Field".                                                          | ...                     | ...                                       | Proposal is to use the JSON schema and map DTDL primitives to it. |
+| **@id**             | An identifer for the Field. If no @id is provided, one will be assigned automatically. | ...                     | ...                                       | "                                                                 |
+| **name**            | The programming name of the element.                                                   | **properties.key**      | the name is the key of a property field   | "                                                                 |
+| **schema**          | The data type of the element, which is an instance of Schema.                          | **properties.key.type** | Type follows the DataSchema specification | "                                                                 |
 
 ### Examples
 
@@ -791,6 +793,7 @@ The chart below lists the properties that a Field may have.
 ```json
 
 "schema": {
+  "@type": "Object",
   "displayName": "playVideoRequest",
   "description": "playVideo action request",
   "fields": [
@@ -822,8 +825,7 @@ The chart below lists the properties that a Field may have.
       "description": "The Video Url",
       "schema": "string"
     }
-  ],
-  "@type": "Object"
+  ]
 }
 
 ```
@@ -868,7 +870,7 @@ DTDL provides a set of geospatial schemas, based on [GeoJSON](https://geojson.or
 
 | DTDL Term / Concept | DTDL Description                                                            | WoT TD Term | WoT TD Description | Comments                           |
 | ------------------- | --------------------------------------------------------------------------- | ----------- | ------------------ | ---------------------------------- |
-| **lineString**      | GeoJSON LineString - dtmi:standard:schema:geospatial:lineString;3           | ...         | ...                | Proposal is to use the Geojson RFC |
+| **lineString**      | GeoJSON LineString - dtmi:standard:schema:geospatial:lineString;3           | ...         | ...                | Proposal is to keep GEoJSON |
 | **multiLineString** | GeoJSON MultiLineString - dtmi:standard:schema:geospatial:multiLineString;3 | ...         | ...                |  "                                 |
 | **multiPoint**      | GeoJSON MultiPoint - dtmi:standard:schema:geospatial:multiPoint;3           | ...         | ...                |  "                                 |
 | **multiPolygon**    | GeoJSON MultiPolygon - dtmi:standard:schema:geospatial:multiPolygon;3       | ...         | ...                |  "                                 |
@@ -980,22 +982,20 @@ TM:
         },
 ```
 
-## Map (Dictionary pattern)
+## Map
 
-| DTDL Term / Concept | DTDL Description                                                                     | WoT TD Term | WoT TD Description | Comments |
-| ------------------- | ------------------------------------------------------------------------------------ | ----------- | ------------------ | -------- |
-| **@type**           | This must be "Map".                                                                  | ...         | ...                |          |
-| **@id**             | An identifer for the Map. If no @id is provided, one will be assigned automatically. | ...         | ...                |          |
-| **comment**         | A comment for model authors.                                                         | ...         | ...                |          |
-| **description**     | A localizable description for display.                                               | ...         | ...                |          |
-| **displayName**     | A localizable name for display.                                                      | ...         | ...                |          |
-| **mapKey**          | A description of the keys in the Map.                                                | ...         | ...                |          |
-| **mapValue**        | A description of the values in the Map.                                              | ...         | ...                |          |
+| DTDL Term / Concept | DTDL Description                                                                     | WoT TD Term | WoT TD Description | Comments                                             |
+|---------------------|--------------------------------------------------------------------------------------|-------------|--------------------|------------------------------------------------------|
+| **@type**           | This must be "Map".                                                                  | **type**    | Must be "object"   | Propose to use json schema "object" with constraints |
+| **@id**             | An identifer for the Map. If no @id is provided, one will be assigned automatically. | -           |                    | "                                                    |
+| **mapKey**          | A description of the keys in the Map.                                                | -           |                    | "                                                    |
+| **mapValue**        | A description of the values in the Map.                                              | -           |                    | "                                                    |
+
 
 ### MapKey
 
 | DTDL Term / Concept | DTDL Description                                                                        | WoT TD Term | WoT TD Description | Comments |
-| ------------------- | --------------------------------------------------------------------------------------- | ----------- | ------------------ | -------- |
+|---------------------|-----------------------------------------------------------------------------------------|-------------|--------------------|----------|
 | **@type**           | If provided, must be "MapKey".                                                          | ...         | ...                |          |
 | **@id**             | An identifer for the MapKey. If no @id is provided, one will be assigned automatically. | ...         | ...                |          |
 | **comment**         | A comment for model authors.                                                            | ...         | ...                |          |
@@ -1015,3 +1015,54 @@ TM:
 | **displayName**     | A localizable name for display.                                         | ...         | ...                |          |
 | **name**            | The programming name of the element.                                    | ...         | ...                |          |
 | **schema**          | The data type of the element, which is an instance of Schema.           | ...         | ...                |          |
+
+
+### Examples
+
+#### _DTDL v3_
+
+Schema:
+```json
+{
+  "@type": "Property",
+  "name": "modules",
+  "writable": true,
+  "schema": {
+    "@type": "Map",
+    "mapKey": {
+      "name": "moduleName",
+      "schema": "string"
+    },
+    "mapValue": {
+      "name": "moduleState",
+      "schema": "string"
+    }
+  }
+}
+```
+
+Value
+```json
+"modules": {
+  "moduleA": "running",
+  "moduleB": "stopped"
+}
+```
+
+
+#### _Thing Model 1.1_
+
+```json
+"modules": {
+ "@type": "dtdl:Map",
+ "type": "object",
+ "properties": {
+   "moduleA": {"type": "number"},
+   "moduleB": {"type": "number"}
+ },
+ "additionalProperties": false
+}
+```
+
+## Summary
+
