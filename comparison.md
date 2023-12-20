@@ -697,23 +697,23 @@ The JSON Schema array can be more general in that it allows a mix of types for t
 
 | DTDL Term / Concept | DTDL Description                                                                      | WoT TD Term | WoT TD Description                                      | Comments                                   |
 |---------------------|---------------------------------------------------------------------------------------|-------------|---------------------------------------------------------|--------------------------------------------|
-| **@type**           | This must be "Enum".                                                                  | ...         | ...                                                     | Proposal is to merge JSON Schema with DTDL |
-| **@id**             | An identifer for the Enum. If no @id is provided, one will be assigned automatically. | ...         | ...                                                     | "                                          |
-| **enumValues**      | A set of name/value mappings for the Enum.                                            | **enum**    | A list of strings representing the possible enum values | "                                          |
-| **valueSchema**     | The data type for the enumValues; all values must be of the same type.                | **type**    | ...                                                     | "                                          |
+| **@type**           | This must be "Enum".                                                                  | -         | ...                                                     | Proposal is to merge JSON Schema with DTDL |
+| **@id**             | An identifer for the Enum. If no @id is provided, one will be assigned automatically. | **@id**         | Same definition as in DTDL                        | -                                          |
+| **enumValues**      | A set of name/value mappings for the Enum.                                            | **oneOf**    | Must be valid against one of the subschemas          | "                                          |
+| **valueSchema**     | The data type for the enumValues; all values must be of the same type.                | **type**    | Assignment of JSON-based data types compatible with JSON Schema   | "                                          |
 
 ### EnumValue
 
 | DTDL Term / Concept | DTDL Description                                                       | WoT TD Term    | WoT TD Description                              | Comments                            |
 |---------------------|------------------------------------------------------------------------|----------------|-------------------------------------------------|-------------------------------------|
-| **@type**           | If provided, must be "EnumValue".                                      | ...            | ...                                             | Proposal is to keep DTDL definition |
-| **@id**             | An identifer for the EnumValue. Assigned automatically if not provided | ...            | ...                                             | "                                   |
-| **name**            | The programming name of the element.                                   | **enum.value** | In TMs, the name is the name of the enum itself | "                                   |
+| **@type**           | If provided, must be "EnumValue".                                      | -              | -                                               | Proposal is to keep DTDL definition |
+| **@id**             | An identifer for the EnumValue. Assigned automatically if not provided | @id            | Same definition as in DTDL                      | "                                   |
+| **name**            | The programming name of the element.                                   | **[].name**    | programming name of the value                   | "                                   |
+| **enumValue**       | The on-the-wire value that maps to the EnumValue, which may be either an integer or a string. | **[].const**    | The const keyword is used to restrict a value to a single value.                   | "                                   |
 
 ### Note
 
-JSON Schema omits the assignment of explicit numbers/strings to literal values. The proposal is to keep JSON Schema compatibility, but extend with DTDL definition of explicit mapping.
-
+Enum in JSON schema does not support labels for enum values. This proposal is based on this [this](https://github.com/w3c/wot-thing-description/issues/156#issuecomment-426902995) discussion in the WoT community.
 
 ### Examples
 
@@ -753,20 +753,17 @@ Value:
 ```json
 
 "state": {
-  "@type": "dtdl:Enum",
   "type": "number",
-  "enum": [3, 4],
-  "schema": {
-    "dtdl:enumValues": [
+  "oneOf": [
       {
-        "dtdl:name": "offline",
-        "title": "Offline",
-        "enumValue": 3
+        "const": 3,
+        "name": "offline",
+        "title": "Offline"
       },
       {
-        "dtdl:name": "online",
-        "title": "Online",
-        "enumValue": 4
+        "const": 4,
+        "name": "online",
+        "title": "Online"
       }
     ]
   }
