@@ -654,6 +654,13 @@ The chart below lists the properties that an Array may have.
 | **@type**           | This must be "Array".                                                                  | **type**                  | Assignment of JSON-based data types compatible with JSON Schema (... array ...). | Proposal is to use the JSON schema and map DTDL primitives to it. |
 | **@id**             | An identifer for the Array. If no @id is provided, one will be assigned automatically. | ...                       | ...                                                                              | "                                                                 |
 | **elementSchema**   | The data type of each element in the Array, which is an instance of Schema.            | **items.type**            | The definition of the array type is based on DataSchema Types                    | "                                                                 |
+| -                   |                                                                                        | **minItems**        | Defines the minimum number of items that have to be in the array.              | "                                                                 |
+| -                  |                                                                                        | **maxItems**        | Defines the maximum number of items that have to be in the array.                | "                                                                 |
+
+
+### Note
+
+The JSON Schema array can be more general in that it allows a mix of types for the elements. Using the ```elementType``` keyword form JSON Schema expresses the same constraints as the array schema in DTDL. So any DTDL array can be expressed in JSON Schema, but not all JSON Schema arrays can be expressed as DTDL.
 
 ### Examples
 
