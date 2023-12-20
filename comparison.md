@@ -682,16 +682,13 @@ The JSON Schema array can be more general in that it allows a mix of types for t
 #### _Thing Model 1.1_
 
 ```json
-{
- "title": "RGB color value",
- "type": "array",
- "items": {
-   "type": "number",
-   "minimum": 0,
-   "maximum": 255
- },
- "minItems": 3,
- "maxItems": 3
+"ledState": {
+  "type": "array",
+  "items": {
+    "type": "boolean"
+  },
+  "minItems": 3,
+  "maxItems": 3
 }
 
 ```
