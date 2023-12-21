@@ -578,7 +578,7 @@ Some term definitions in DTDL as well as in WoT may appear in different structur
 
 ### Examples
 
-_DTDL v3_
+#### _DTDL v3_
 
 ```json
 {
@@ -603,7 +603,7 @@ _DTDL v3_
 }
 ```
 
-_Thing Model 1.1_
+#### _Thing Model 1.1_
 
 ```json
 
