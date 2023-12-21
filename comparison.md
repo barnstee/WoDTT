@@ -1043,7 +1043,7 @@ Annotations like ```description``` or ```displayName``` are not supported in a `
 
 | DTDL Term / Concept | DTDL Description                                                                     | WoT TD Term | WoT TD Description | Comments                                             |
 |---------------------|--------------------------------------------------------------------------------------|-------------|--------------------|------------------------------------------------------|
-| **@type**           | This must be "Map".                                                                  | -           | Must be "object"   | Clarify the difference to DTDL object                |
+| **@type**           | This must be "Map".                                                                  | -           | Must be "object"   | Proposal is to use the JSON Schema definition        |
 | **@id**             | An identifer for the Map. If no @id is provided, one will be assigned automatically. | -           |                    | "                                                    |
 | **mapKey**          | A description of the keys in the Map.                                                | -           |                    | "                                                    |
 | **mapValue**        | A description of the values in the Map.                                              | -           |                    | "                                                    |
@@ -1053,7 +1053,7 @@ Annotations like ```description``` or ```displayName``` are not supported in a `
 
 | DTDL Term / Concept | DTDL Description                                                                        | WoT TD Term | WoT TD Description | Comments |
 |---------------------|-----------------------------------------------------------------------------------------|-------------|--------------------|----------|
-| **@type**           | If provided, must be "MapKey".                                                          | ...         | ...                | Clarify the difference to DTDL object |
+| **@type**           | If provided, must be "MapKey".                                                          | ...         | ...                | Proposal is to use the JSON Schema definition |
 | **@id**             | An identifer for the MapKey. If no @id is provided, one will be assigned automatically. | ...         | ...                | "        |
 | **comment**         | A comment for model authors.                                                            | ...         | ...                | "        |
 | **description**     | A localizable description for display.                                                  | ...         | ...                | "        |
@@ -1065,7 +1065,7 @@ Annotations like ```description``` or ```displayName``` are not supported in a `
 
 | DTDL Term / Concept | DTDL Description                                                        | WoT TD Term | WoT TD Description | Comments |
 |---------------------|-------------------------------------------------------------------------|-------------|--------------------|----------|
-| **@type**           | If provided, must be "MapValue".                                        | ...         | ...                | Clarify the difference to DTDL object  |
+| **@type**           | If provided, must be "MapValue".                                        | ...         | ...                | Proposal is to use the JSON Schema definition |
 | **@id**             | An identifer for the MapValue. Assigned automatically if none provided. | ...         | ...                | "        |
 | **comment**         | A comment for model authors.                                            | ...         | ...                | "        |
 | **description**     | A localizable description for display.                                  | ...         | ...                | "        |
@@ -1075,7 +1075,7 @@ Annotations like ```description``` or ```displayName``` are not supported in a `
 
 ### Note
 
-I fail to see the difference between a DTDL map and a DTDL object.
+The difference to a DTDL object is that the DTDL describes a set of known keys with known value types, while a map allows an arbitrary number of unknown keys. This is consolidated within JSON-Schema in the object type, where ```patternProperties``` can be used instead of ```properties```.
 
 ### Examples
 
@@ -1106,9 +1106,8 @@ I fail to see the difference between a DTDL map and a DTDL object.
 "modules": {
  "@type": "dtdl:Map",
  "type": "object",
- "properties": {
-   "moduleName": {"type": "string"},
-   "moduleState": {"type": "string"}
+ "patternProperties": {
+   ".*": {"type": "string", "title": "moduleState"},
  },
  "additionalProperties": false
 }
@@ -1117,8 +1116,8 @@ I fail to see the difference between a DTDL map and a DTDL object.
 #### _Value_
 ```json
 "modules": {
-  "moduleName": "operational_state",
-  "moduleState": "stopped"
+  "moduleA": "operational_state",
+  "moduleB": "stopped"
 }
 ```
 
