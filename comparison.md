@@ -934,21 +934,28 @@ A Telemetry message sent by a particular device reporting its location would hav
 
 | DTDL Term / Concept | DTDL Description                                                                                           | WoT Term  | WoT Description                                          | Comments                      |
 |---------------------|------------------------------------------------------------------------------------------------------------|-----------|----------------------------------------------------------|-------------------------------|
-| **@type**           | If provided, must be "Relationship"                                                                        | **@type** | Implicitly "htcl:link"                                   | Recommend semantic link type to W3C |
+| **@type**           | If provided, must be "Relationship"                                                                        | **@type** | Use **dtdl:Relationship** for now           | Recommend semantic link type to W3C and use custom type **dtdl:Relationship** for now |
 | **@id**             | Identifier for the Relationship. Assigned automatically if not provided.                                   | **@id**   |                                                          |                               |
 | **comment**         | A comment for model authors                                                                                | -         |                                                          |                               |
 | **description**     | Comment for model authors                                                                                  | -         |                                                          | "td:description"              |
 | **displayName**     | A localizable name for display.                                                                            | -         |                                                          | "td:title"                    |
-| **maxMultiplicity** | The max multiplicity for the realtionship target; defaults to the max allowable value                      | -         |                                                          | **Propose to W3C**            |
-| **minMultiplicity** | The min multiplicity for the realtionship target; defaults to the max allowable value                      | -         |                                                          | **Propose to W3C**            |
-| **name**            | The programming name of the element.                                                                       | **rel**   | A link relation type identifies the semantics of a link. |                               |
-| **properties**      | A set of Properties that define Relationship-specific state.                                               | -         |                                                          |                               |
-| **target**          | An Interface identifier. If no target is specified, each instance target is permitted to be any Interface. | **href**  | Target IRI of a link or submission target of a form.     |                               |
+| **maxMultiplicity** | The max multiplicity for the realtionship target; defaults to the max allowable value                      | **dtdl:maxMultiplicity**  |                                                          | Use term in TM using context extension  |
+| **minMultiplicity** | The min multiplicity for the realtionship target; defaults to the max allowable value                      | **dtdl:minMultiplicity**  |                                                          | Use term in TM using context extension  |
+| **name**            | The programming name of the element.                                                                       | **rel**   | A link relation type identifies the semantics of a link. |  Proposal is to use the WoT definition. |
+| **properties**      | A set of Properties that define Relationship-specific state.                                               | -         |                                                          |  Use custom terms with context extension |
+| **target**          | An Interface identifier. If no target is specified, each instance target is permitted to be any Interface. | **href**  | Target IRI of a link or submission target of a form.     |  Proposal is to use the WoT definition. |
 | **writable**        | A boolean value that indicates whether the Relationship is writable or not.                                | -         |                                                          | What does writable mean here? |
+
+## Note
+
+Annotations like ```description``` or ```displayName``` are not supported in a ```tm:link``` as it is not a dataschema/json-schema. 
+
+### Examples
 
 From `Ontologies/ISA95/CommonObjectModels/Part2/OperationsSchedule/OperationsSchedule.json` extended with multiplicity and properties
 
-DTDL:
+#### _DTDL v3_
+
 ```json
         {
             "@type": "Relationship",
@@ -969,7 +976,8 @@ DTDL:
 ```
 
 
-TM:
+#### _Thing Model 1.1_
+
 ```json
         {
             "@type": "dtdl:Relationship",
