@@ -876,18 +876,17 @@ DTDL provides a set of geospatial schemas, based on [GeoJSON](https://geojson.or
 
 | DTDL Term / Concept | DTDL Description                                                            | WoT TD Term | WoT TD Description | Comments                    |
 |---------------------|-----------------------------------------------------------------------------|-------------|--------------------|-----------------------------|
-| **lineString**      | GeoJSON LineString - dtmi:standard:schema:geospatial:lineString;3           | ...         | ...                | Proposal is to keep GEoJSON |
-| **multiLineString** | GeoJSON MultiLineString - dtmi:standard:schema:geospatial:multiLineString;3 | ...         | ...                | "                           |
-| **multiPoint**      | GeoJSON MultiPoint - dtmi:standard:schema:geospatial:multiPoint;3           | ...         | ...                | "                           |
-| **multiPolygon**    | GeoJSON MultiPolygon - dtmi:standard:schema:geospatial:multiPolygon;3       | ...         | ...                | "                           |
-| **point**           | GeoJSON Point - dtmi:standard:schema:geospatial:point;3                     | ...         | ...                | "                           |
-| **polygon**         | GeoJSON Polygon - dtmi:standard:schema:geospatial:polygon;3                 | ...         | ...                | "                           |
+| **lineString**      | GeoJSON LineString - dtmi:standard:schema:geospatial:lineString;3           | **@type**   | Must be "geojson:LineString" | Proposal is to keep GEoJSON, but use JSON-LD + JSON Schema |
+| **multiLineString** | GeoJSON MultiLineString - dtmi:standard:schema:geospatial:multiLineString;3 |**@type**   | Must be "geojson:MultiLineString" | "                   |
+| **multiPoint**      | GeoJSON MultiPoint - dtmi:standard:schema:geospatial:multiPoint;3           |**@type**   | Must be "geojson:MultiPoint"      | "                   |
+| **multiPolygon**    | GeoJSON MultiPolygon - dtmi:standard:schema:geospatial:multiPolygon;3       |**@type**   | Must be "geojson:MultiPolygon"    | "                   |
+| **point**           | GeoJSON Point - dtmi:standard:schema:geospatial:point;3                     |**@type**   | Must be "geojson:Point"           | "                   |
+| **polygon**         | GeoJSON Polygon - dtmi:standard:schema:geospatial:polygon;3                 |**@type**   | Must be "geojson:Polygon"         | "                   |
 
 ### Note
 
 GeoJSON is well defined and supports both JSON-LD as well as JSON-Schema. The proposal is to just use these definitions in Thing Models, but not as mandatory, as there are other geospatial standards that are relevant in other fields.
 If GeoJSON is used in Thing Models however, it can be recognized in DTDLs.
-
 
 ### Examples
 
@@ -935,7 +934,7 @@ A Telemetry message sent by a particular device reporting its location would hav
 
 | DTDL Term / Concept | DTDL Description                                                                                           | WoT Term  | WoT Description                                          | Comments                      |
 |---------------------|------------------------------------------------------------------------------------------------------------|-----------|----------------------------------------------------------|-------------------------------|
-| **@type**           | If provided, must be "Relationship"                                                                        | **@type** | Implicitly "htcl:link"                                   | Recommend semantic link type? |
+| **@type**           | If provided, must be "Relationship"                                                                        | **@type** | Implicitly "htcl:link"                                   | Recommend semantic link type to W3C |
 | **@id**             | Identifier for the Relationship. Assigned automatically if not provided.                                   | **@id**   |                                                          |                               |
 | **comment**         | A comment for model authors                                                                                | -         |                                                          |                               |
 | **description**     | Comment for model authors                                                                                  | -         |                                                          | "td:description"              |
@@ -947,7 +946,7 @@ A Telemetry message sent by a particular device reporting its location would hav
 | **target**          | An Interface identifier. If no target is specified, each instance target is permitted to be any Interface. | **href**  | Target IRI of a link or submission target of a form.     |                               |
 | **writable**        | A boolean value that indicates whether the Relationship is writable or not.                                | -         |                                                          | What does writable mean here? |
 
-From `Ontologies/ISA95/CommonObjectModels/Part2/OperationsSchedule/OperationsSchedule.json`
+From `Ontologies/ISA95/CommonObjectModels/Part2/OperationsSchedule/OperationsSchedule.json` extended with multiplicity and properties
 
 DTDL:
 ```json
@@ -955,6 +954,15 @@ DTDL:
             "@type": "Relationship",
             "name": "isMadeUpOf",
             "displayName": "Is made up of",
+            "minMultiplicity": 0,
+            "maxMultiplicity": 1,
+            "properties": [
+              {
+                "@type": "Property",
+                "name": "lastExecuted",
+                "schema": "dateTime"
+              }
+            ],
             "description": "The operations requests that make up the operations schedule.",
             "target": "dtmi:digitaltwins:isa95:OperationsRequest;1"
         },
@@ -967,6 +975,14 @@ TM:
             "@type": "dtdl:Relationship",
             "rel": "isMadeUpOf",
             "title": "Is made up of",
+            "dtdl:minMultiplicity": 0,
+            "dtdl:maxMultiplicity": 1,
+            "properties": [
+              "lastExecuted: {
+                "schema": "string",
+                "format": "datetime"
+              }
+            ],
             "description": "The operations requests that make up the operations schedule.",
             "href": "dtmi:digitaltwins:isa95:OperationsRequest;1"
         },
