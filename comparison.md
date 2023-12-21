@@ -1044,7 +1044,7 @@ Annotations like ```description``` or ```displayName``` are not supported in a `
 | DTDL Term / Concept | DTDL Description                                                                     | WoT TD Term | WoT TD Description | Comments                                             |
 |---------------------|--------------------------------------------------------------------------------------|-------------|--------------------|------------------------------------------------------|
 | **@type**           | This must be "Map".                                                                  | **type**    | Must be "object"   | Propose to use json schema "object" with constraints |
-| **@id**             | An identifer for the Map. If no @id is provided, one will be assigned automatically. | -           |                    | "                                                    |
+| **@id**             | An identifer for the Map. If no @id is provided, one will be assigned automatically. | **@id**     |                    | "                                                    |
 | **mapKey**          | A description of the keys in the Map.                                                | -           |                    | "                                                    |
 | **mapValue**        | A description of the values in the Map.                                              | -           |                    | "                                                    |
 
@@ -1053,7 +1053,7 @@ Annotations like ```description``` or ```displayName``` are not supported in a `
 
 | DTDL Term / Concept | DTDL Description                                                                        | WoT TD Term | WoT TD Description | Comments |
 |---------------------|-----------------------------------------------------------------------------------------|-------------|--------------------|----------|
-| **@type**           | If provided, must be "MapKey".                                                          | ...         | ...                | "        |
+| **@type**           | If provided, must be "MapKey".                                                          | ...         | ...                | Propose to use json schema definition in DTDL |
 | **@id**             | An identifer for the MapKey. If no @id is provided, one will be assigned automatically. | ...         | ...                | "        |
 | **comment**         | A comment for model authors.                                                            | ...         | ...                | "        |
 | **description**     | A localizable description for display.                                                  | ...         | ...                | "        |
@@ -1065,7 +1065,7 @@ Annotations like ```description``` or ```displayName``` are not supported in a `
 
 | DTDL Term / Concept | DTDL Description                                                        | WoT TD Term | WoT TD Description | Comments |
 |---------------------|-------------------------------------------------------------------------|-------------|--------------------|----------|
-| **@type**           | If provided, must be "MapValue".                                        | ...         | ...                | "        |
+| **@type**           | If provided, must be "MapValue".                                        | ...         | ...                | Propose to use json schema definition in DTDL  |
 | **@id**             | An identifer for the MapValue. Assigned automatically if none provided. | ...         | ...                | "        |
 | **comment**         | A comment for model authors.                                            | ...         | ...                | "        |
 | **description**     | A localizable description for display.                                  | ...         | ...                | "        |
@@ -1119,18 +1119,3 @@ Annotations like ```description``` or ```displayName``` are not supported in a `
 }
 ```
 
-## Summary of Conversion Work Required
-
-Luckily, only **five** topic make up the main differences:
-
-1. DTDL still uses JSON-LD 1.0: moving to JSON-LD 1.1 is a progression for DTDL even outside of this context.
-2. In DTDL contents is an array of typed objects, while WoT splits the types into the separate maps "properties", "actions", "events"  using the name of the objects the key.
-3. DTDL uses a proprietary schema definition for primitive and complex types. WoT uses the standard JSON-Schema.
-4. Most keywords are semantically equivalent and make it easy to converge by renaming the keys.
-5. WoT should label semantic links explicitly. Proposal is to introduce an additional "@type".
-
-From our first analysis, three additions exist in DTDL that WoT doesn't support, yet:
-
-1. Enum mapping from specific values to strings is missing in WoT.
-2. Relationship target and multiplicity are solved in WoT through semantic technology. DTDL introduces these concepts for JSON.
-3. Relationship may have properties in DTDL.
