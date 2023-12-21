@@ -992,7 +992,7 @@ TM:
 
 | DTDL Term / Concept | DTDL Description                                                               | WoT TD Term       | WoT TD Description         | Comments |
 |---------------------|--------------------------------------------------------------------------------|-------------------|----------------------------|----------|
-| **@type**           | This must be "Component".                                                      | **rel**           | This must be "tm:submodel" |          |
+| **@type**           | This must be "Component".                                                      | **rel**           | This must be "tm:submodel" | Proposal is to use the WoT definition.          |
 | **@id**             | An identifer for the Component. If no @id is provided, assigned automatically. | **@id**           | Same as DTDL               |          |
 | **comment**         | A comment for model authors.                                                   | -                 |                            |          |
 | **description**     | A localizable description for display.                                         | -                 |                            |          |
@@ -1000,8 +1000,15 @@ TM:
 | **name**            | The programming name of the element.                                           | -                 |                            |          |
 | **schema**          | The data type of the Component, which is an instance of Interface.             | **href**/**type** | IRI of TM                  |          |
 
+## Note
 
-DTDL:
+Annotations like ```description``` or ```displayName``` are not supported in a ```tm:submodel``` as it is not a dataschema/json-schema. 
+
+
+### Examples
+
+#### _DTDL v3_
+
 ```json
         {
             "@type": "Component",
@@ -1013,7 +1020,8 @@ DTDL:
 
 ```
 
-TM:
+#### _Thing Model 1.1_
+
 ```json
         {
             "rel": "tm:submodel",
