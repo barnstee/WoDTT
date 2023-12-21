@@ -1043,8 +1043,8 @@ Annotations like ```description``` or ```displayName``` are not supported in a `
 
 | DTDL Term / Concept | DTDL Description                                                                     | WoT TD Term | WoT TD Description | Comments                                             |
 |---------------------|--------------------------------------------------------------------------------------|-------------|--------------------|------------------------------------------------------|
-| **@type**           | This must be "Map".                                                                  | **type**    | Must be "object"   | Propose to use json schema "object" with constraints |
-| **@id**             | An identifer for the Map. If no @id is provided, one will be assigned automatically. | **@id**     |                    | "                                                    |
+| **@type**           | This must be "Map".                                                                  | -           | Must be "object"   | Clarify the difference to DTDL object                |
+| **@id**             | An identifer for the Map. If no @id is provided, one will be assigned automatically. | -           |                    | "                                                    |
 | **mapKey**          | A description of the keys in the Map.                                                | -           |                    | "                                                    |
 | **mapValue**        | A description of the values in the Map.                                              | -           |                    | "                                                    |
 
@@ -1053,7 +1053,7 @@ Annotations like ```description``` or ```displayName``` are not supported in a `
 
 | DTDL Term / Concept | DTDL Description                                                                        | WoT TD Term | WoT TD Description | Comments |
 |---------------------|-----------------------------------------------------------------------------------------|-------------|--------------------|----------|
-| **@type**           | If provided, must be "MapKey".                                                          | ...         | ...                | Propose to use json schema definition in DTDL |
+| **@type**           | If provided, must be "MapKey".                                                          | ...         | ...                | Clarify the difference to DTDL object |
 | **@id**             | An identifer for the MapKey. If no @id is provided, one will be assigned automatically. | ...         | ...                | "        |
 | **comment**         | A comment for model authors.                                                            | ...         | ...                | "        |
 | **description**     | A localizable description for display.                                                  | ...         | ...                | "        |
@@ -1065,7 +1065,7 @@ Annotations like ```description``` or ```displayName``` are not supported in a `
 
 | DTDL Term / Concept | DTDL Description                                                        | WoT TD Term | WoT TD Description | Comments |
 |---------------------|-------------------------------------------------------------------------|-------------|--------------------|----------|
-| **@type**           | If provided, must be "MapValue".                                        | ...         | ...                | Propose to use json schema definition in DTDL  |
+| **@type**           | If provided, must be "MapValue".                                        | ...         | ...                | Clarify the difference to DTDL object  |
 | **@id**             | An identifer for the MapValue. Assigned automatically if none provided. | ...         | ...                | "        |
 | **comment**         | A comment for model authors.                                            | ...         | ...                | "        |
 | **description**     | A localizable description for display.                                  | ...         | ...                | "        |
@@ -1073,6 +1073,9 @@ Annotations like ```description``` or ```displayName``` are not supported in a `
 | **name**            | The programming name of the element.                                    | ...         | ...                | "        |
 | **schema**          | The data type of the element, which is an instance of Schema.           | ...         | ...                | "        |
 
+### Note
+
+I fail to see the difference between a DTDL map and a DTDL object.
 
 ### Examples
 
