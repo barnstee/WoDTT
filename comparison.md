@@ -753,7 +753,7 @@ Value:
 ```json
 
 "state": {
-  "type": "number",
+  "type": "integer",
   "oneOf": [
       {
         "const": 3,
