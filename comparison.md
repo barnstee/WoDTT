@@ -465,7 +465,7 @@ Some term definitions in DTDL as well as in WoT may appear in different structur
 |                          |                                                                                                               | **support**             | Provides information about the TD maintainer as URI scheme (e.g., mailto [RFC6068], tel [RFC3966], https [RFC9112]).                                                     | Proposal is to keep WoT definition.                                                                             |
 | **content**              | A set of elements that define the contents of this Interface.                                                 |                         | Comment: Kind of interactions specified directly in properties, actions, and events container.                                                                           | Proposal is to split this up into 3 separate fields, i.e. WoT "properties", "actions" and "events" (see below). |
 | **schemas**              | A set of complex schema objects that are reusable within this Interface.                                      | **schemaDefinitions**   | Set of named data schemas. To be used in a schema name-value pair inside an AdditionalExpectedResponse object.                                                           | Proposal is to keep WoT definition.                                                                             |
-| **extends**              | A set of DTMIs that refer to Interfaces from which this Interface inherits contents...                        | **links**               | A Thing Model can extend an existing Thing Model by using the tm:extends mechanism announced in the links definition.                                                    | WoT uses [RFC8288] web linking for inheritance. Proposal is to use that.                                        |
+| **extends**              | A set of DTMIs that refer to Interfaces from which this Interface inherits contents...                        | **links.rel**               | A Thing Model can extend an existing Thing Model by using the tm:extends mechanism announced in the links definition.                                                    | WoT uses [RFC8288] web linking for inheritance. Proposal is to use that.                                        |
 |                          |                                                                                                               |                         | Links provide Web links to arbitrary resources that relate to the specified Thing Description.                                                                           |                                                                                                                 |
 |                          |                                                                                                               | **forms**               | Set of form hypermedia controls that describe how an operation can be performed.                                                                                         | Used for WoT protocol bindings. Proposal is to use the WoT definition.                                          |
 |                          |                                                                                                               | **security**            | Set of security definition names, chosen from those defined in securityDefinitions.                                                                                      | Proposal is to use the WoT definition.                                                                          |
@@ -1000,7 +1000,7 @@ From `Ontologies/ISA95/CommonObjectModels/Part2/OperationsSchedule/OperationsSch
 
 | DTDL Term / Concept | DTDL Description                                                               | WoT TD Term       | WoT TD Description         | Comments |
 |---------------------|--------------------------------------------------------------------------------|-------------------|----------------------------|----------|
-| **@type**           | This must be "Component".                                                      | **rel**           | This must be "tm:submodel" | Proposal is to use the WoT definition.          |
+| **@type**           | This must be "Component".                                                      | **links.rel**           | This must be "tm:submodel" | Proposal is to use the WoT definition.          |
 | **@id**             | An identifer for the Component. If no @id is provided, assigned automatically. | **@id**           | Same as DTDL               |          |
 | **comment**         | A comment for model authors.                                                   | -                 |                            |          |
 | **description**     | A localizable description for display.                                         | -                 |                            |          |
@@ -1018,25 +1018,28 @@ Annotations like ```description``` or ```displayName``` are not supported in a `
 #### _DTDL v3_
 
 ```json
-        {
-            "@type": "Component",
-            "name": "description",
-            "displayName": "Description",
-            "description": "Contains additional information",
-            "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
-        },
-
+"content": [
+    {
+        "@type": "Component",
+        "name": "description",
+        "displayName": "Description",
+        "description": "Contains additional information",
+        "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+    },
+]
 ```
 
 #### _Thing Model 1.1_
 
 ```json
-        {
-            "rel": "tm:submodel",
-            "title": "Description",
-            "description": "Contains additional information",
-            "href": "dtmi:digitaltwins:isa95:LangStringSet;1"
-        },
+"links":[
+    {
+        "rel": "tm:submodel",
+        "title": "Description",
+        "description": "Contains additional information",
+        "href": "dtmi:digitaltwins:isa95:LangStringSet;1"
+    },
+]
 ```
 
 ## Map
